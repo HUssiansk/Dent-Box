@@ -427,7 +427,8 @@ h1{margin:15px 0 13px;color:var(--primary-dark);font-size:clamp(2.25rem,5vw,4.1r
     <form class="checkout-box" id="checkoutForm">
       <div class="field">
         <label for="customerName">الاسم أو اسم العيادة *</label>
-        <input id="customerName" required>
+        <input id="customerName" required maxlength="80">
+
       </div>
       <div class="field">
         <label for="phone">رقم الهاتف *</label>
