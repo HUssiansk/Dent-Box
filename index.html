@@ -437,11 +437,13 @@ h1{margin:15px 0 13px;color:var(--primary-dark);font-size:clamp(2.25rem,5vw,4.1r
       </div>
       <div class="field">
         <label for="address">المحافظة والعنوان</label>
-        <input id="address">
+        <input id="address" maxlength="200">
+        
       </div>
       <div class="field">
         <label for="notes">ملاحظات</label>
-        <textarea id="notes"></textarea>
+        <textarea id="notes" maxlength="500"></textarea>
+
       </div>
       <button class="btn btn-primary" type="submit" style="width:100%">إرسال الطلب</button>
     </form>
