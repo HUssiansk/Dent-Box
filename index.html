@@ -1458,7 +1458,13 @@ $('checkoutForm').onsubmit = e => {
   const phone = $('phone').value.trim();
   const address = $('address').value.trim();
   const notes = $('notes').value.trim();
-  const total = $('total').textContent;
+  const total = money(
+  Object.values(cart).reduce((sum, entry) => {
+    const info = lineInfo(entry);
+    return info ? sum + info.price * entry.qty : sum;
+  }, 0)
+);
+
 
   const text =
 `طلب جديد من Dentbox
