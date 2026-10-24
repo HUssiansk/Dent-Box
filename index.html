@@ -122,7 +122,7 @@ h1{margin:15px 0 13px;color:var(--primary-dark);font-size:clamp(2.25rem,5vw,4.1r
 /* ===== Cart ===== */
 .overlay{position:fixed;inset:0;background:rgba(8,33,43,.55);opacity:0;pointer-events:none;transition:.25s;z-index:50}
 .overlay.open{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;bottom:0;right:0;width:min(430px,94%);background:#fff;box-shadow:-20px 0 40px rgba(0,0,0,.12);transform:translateX(105%);transition:.28s;z-index:60;padding:21px 18px;display:flex;flex-direction:column}
+.drawer{position:fixed;top:0;bottom:0;right:0;width:min(430px,94%);background:#fff;box-shadow:-20px 0 40px rgba(0,0,0,.12);transform:translateX(105%);transition:.28s;z-index:60;padding:21px 18px calc(21px + env(safe-area-inset-bottom));display:flex;flex-direction:column}
 .drawer.open{transform:translateX(0)}
 .drawer-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:13px;border-bottom:1px solid var(--line)}
 .drawer-head h3{margin:0;color:var(--primary-dark);font-size:27px}
@@ -134,14 +134,23 @@ h1{margin:15px 0 13px;color:var(--primary-dark);font-size:clamp(2.25rem,5vw,4.1r
 .qty{display:flex;align-items:center;gap:7px;background:#f4fbfd;border-radius:10px;padding:4px 6px}
 .qty button{width:26px;height:26px;border:0;border-radius:7px;background:#fff;color:var(--primary);font-weight:900;cursor:pointer}
 .remove-btn{border:0;background:transparent;color:var(--danger);font-size:23px;cursor:pointer}
-.cart-footer{padding-top:13px;border-top:1px solid var(--line)}
+.cart-footer{padding-top:13px;border-top:1px solid var(--line);overflow-y:auto;max-height:62vh}
 .total-row{display:flex;justify-content:space-between;font-weight:900;color:var(--primary-dark);margin-bottom:11px}
+.sub-row{display:flex;justify-content:space-between;font-weight:800;color:var(--muted);font-size:14px;margin-bottom:6px}
+.sub-row .free{color:var(--green);font-weight:900}
 .checkout-box{display:none;margin-top:11px}
 .checkout-box.show{display:block}
 .field{margin-bottom:9px}
 .field label{display:block;font-size:13px;font-weight:900;margin-bottom:4px}
 .field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 11px;outline:none}
 .field textarea{min-height:65px;resize:vertical}
+
+/* ===== Free Shipping Bar ===== */
+.ship-bar{margin-bottom:12px;font-size:13px;font-weight:800;color:var(--primary-dark)}
+.ship-track{height:8px;background:var(--secondary);border-radius:99px;overflow:hidden;margin-top:6px}
+.ship-fill{height:100%;background:var(--primary);border-radius:99px;transition:width .3s}
+.ship-bar.done{color:var(--green)}
+.ship-bar.done .ship-fill{background:var(--green)}
 
 /* ===== Toast ===== */
 .toast{position:fixed;left:18px;bottom:18px;background:var(--primary-dark);color:#fff;border-radius:10px;padding:11px 15px;font-weight:800;box-shadow:var(--shadow);transform:translateY(120px);opacity:0;transition:.25s;z-index:120}
@@ -191,7 +200,7 @@ h1{margin:15px 0 13px;color:var(--primary-dark);font-size:clamp(2.25rem,5vw,4.1r
 .mobile-cart-count{position:absolute;top:1px;right:calc(50% - 25px);min-width:19px;height:19px;display:grid;place-items:center;background:var(--danger);color:#fff;border:2px solid #fff;border-radius:50px;font-size:9px}
 
 /* ===== WhatsApp ===== */
-.wa-float{position:fixed;left:18px;bottom:96px;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 10px 25px rgba(37,211,102,.30);z-index:85;transition:transform .2s ease,box-shadow .2s ease}
+.wa-float{position:fixed;left:18px;bottom:96px;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 10px 25px rgba(37,211,102,.30);z-index:40;transition:transform .2s ease,box-shadow .2s ease}
 .wa-float:hover{transform:scale(1.06);box-shadow:0 14px 30px rgba(37,211,102,.38)}
 .wa-float svg{width:32px;height:32px;fill:currentColor;display:block}
 
@@ -417,6 +426,18 @@ h1{margin:15px 0 13px;color:var(--primary-dark);font-size:clamp(2.25rem,5vw,4.1r
   <div class="cart-list" id="cartList"></div>
 
   <div class="cart-footer">
+
+    <div class="ship-bar" id="shipBar" style="display:none"></div>
+
+    <div class="sub-row" id="subRow" style="display:none">
+      <span>مجموع المنتجات</span>
+      <span id="subtotal">0 د.ع</span>
+    </div>
+    <div class="sub-row" id="shipRow" style="display:none">
+      <span>التوصيل</span>
+      <span id="shipCost">0 د.ع</span>
+    </div>
+
     <div class="total-row">
       <span>الإجمالي</span>
       <span id="total">0 د.ع</span>
@@ -509,13 +530,17 @@ const SUPABASE_URL = 'https://ncurbamdczoiafvcnhzd.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_I_8sCiOUrVQzSi_6inzPYQ_nzWfZksF';
 const WHATSAPP = '9647823577749';
 
+‎/* ===== إعدادات التوصيل (غيّر الأرقام من هنا فقط) ===== */
+const FREE_SHIPPING_MIN = 50000;  // الطلب اللي يوصل هذا المبلغ يحصل توصيل مجاني
+const SHIPPING_FEE = 5000;        // أجرة التوصيل للطلبات الأقل من الحد
+
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let products = [];
 
 let cart = JSON.parse(localStorage.getItem('dentbox-cart') || '{}');
 
-/* ترحيل أي سلة قديمة كانت مخزنة كأرقام فقط */
+‎/* ترحيل أي سلة قديمة كانت مخزنة كأرقام فقط */
 (function migrateCart(){
   let changed = false;
   Object.keys(cart).forEach(k => {
@@ -766,6 +791,21 @@ function saveCart(){
   renderCart();
 }
 
+‎/* مجموع المنتجات بدون التوصيل */
+function cartSubtotal(){
+  return Object.values(cart).reduce((s, e) => {
+    if(!e || e.qty <= 0) return s;
+    const i = lineInfo(e);
+    return i ? s + i.price * e.qty : s;
+  }, 0);
+}
+
+‎/* أجرة التوصيل: 0 إذا السلة فارغة أو وصلت للحد المجاني */
+function shippingFor(subtotal){
+  if(subtotal <= 0) return 0;
+  return subtotal >= FREE_SHIPPING_MIN ? 0 : SHIPPING_FEE;
+}
+
 /* ===== Categories ===== */
 
 function getCategoryGroups(){
@@ -875,7 +915,7 @@ function renderCategoryCards(){
 
 /* ===== Subcategories ===== */
 
-/* أقسام فرعية ثابتة تظهر دائماً داخل القسم حتى لو ما كو منتجات بعد */
+‎/* أقسام فرعية ثابتة تظهر دائماً داخل القسم حتى لو ما كو منتجات بعد */
 const fixedSubcategories = {
   'Burs': ['Turbine', 'Handpiece']
 };
@@ -1038,11 +1078,11 @@ function renderProducts(){
   $('productsTitle').textContent = active === 'all' ? 'المنتجات' : active;
 
   $('results').textContent =
-    `عرض ${r.length} من ${
+‎    `عرض ${r.length} من ${
       active === 'all'
       ? products.length
       : products.filter(p => p.cat === active).length
-    } منتج`;
+‎    } منتج`;
 
   $('productsGrid').innerHTML =
     r.length
@@ -1135,8 +1175,8 @@ function addToCart(id, variantName = null){
 
   toast(
     variantName
-    ? `تمت إضافة ${variantName} إلى السلة`
-    : 'تمت إضافة المنتج إلى السلة'
+‎    ? `تمت إضافة ${variantName} إلى السلة`
+‎    : 'تمت إضافة المنتج إلى السلة'
   );
 
 }
@@ -1182,13 +1222,16 @@ function renderCart(){
       })
       .filter(Boolean);
 
-  let total = 0;
+  let subtotal = 0;
   let count = 0;
 
   rows.forEach(({entry,info}) => {
-    total += info.price * entry.qty;
+    subtotal += info.price * entry.qty;
     count += entry.qty;
   });
+
+  const shipping = shippingFor(subtotal);
+  const total = subtotal + shipping;
 
   $('cartCount').textContent = count;
 
@@ -1196,7 +1239,35 @@ function renderCart(){
 
   $('mobileCartCount').style.display = count ? 'grid' : 'none';
 
+‎  /* المجموع + التوصيل + الإجمالي */
+  $('subtotal').textContent = money(subtotal);
+  $('subRow').style.display = subtotal > 0 ? 'flex' : 'none';
+  $('shipRow').style.display = subtotal > 0 ? 'flex' : 'none';
+
+  if(shipping === 0){
+    $('shipCost').innerHTML = '<span class="free">مجاني 🎉</span>';
+  }else{
+    $('shipCost').textContent = money(shipping);
+  }
+
   $('total').textContent = money(total);
+
+‎  /* شريط التوصيل المجاني */
+  const bar = $('shipBar');
+
+  if(subtotal <= 0){
+    bar.style.display = 'none';
+  }else{
+    const left = FREE_SHIPPING_MIN - subtotal;
+    const pct = Math.min(100, Math.round(subtotal / FREE_SHIPPING_MIN * 100));
+    bar.style.display = 'block';
+    bar.classList.toggle('done', left <= 0);
+    bar.innerHTML =
+      (left > 0
+‎        ? `باقي <b>${money(left)}</b> وياخذ توصيل مجاني 🚚`
+‎        : '🎉 طلبك مؤهل للتوصيل المجاني')
+      + `<div class="ship-track"><div class="ship-fill" style="width:${pct}%"></div></div>`;
+  }
 
   $('cartList').innerHTML =
     rows.length
@@ -1297,7 +1368,7 @@ async function loadProducts(){
     products = (data || []).map(normalize);
 
     window.currentSubcategory = 'all';
-        window.currentMaterial = 'all';
+    window.currentMaterial = 'all';
 
     renderCategoryCards();
     renderSubcategories();
@@ -1312,8 +1383,8 @@ async function loadProducts(){
 
     $('productsGrid').innerHTML = `
       <div class="empty">
-        حدث خطأ في الاتصال.
-        حاول تحديث الصفحة أو التواصل عبر واتساب.
+‎        حدث خطأ في الاتصال.
+‎        حاول تحديث الصفحة أو التواصل عبر واتساب.
       </div>
     `;
 
@@ -1382,7 +1453,7 @@ $('showAllProducts').onclick = () => {
   active = 'all';
 
   window.currentSubcategory = 'all';
-        window.currentMaterial = 'all';
+  window.currentMaterial = 'all';
 
   renderCategoryCards();
   renderSubcategories();
@@ -1403,7 +1474,7 @@ $('backCategories').onclick = () => {
   active = 'all';
 
   window.currentSubcategory = 'all';
-        window.currentMaterial = 'all';
+  window.currentMaterial = 'all';
 
   renderCategoryCards();
   renderSubcategories();
@@ -1463,26 +1534,25 @@ $('checkoutForm').onsubmit = e => {
   const phone = $('phone').value.trim();
   const address = $('address').value.trim();
   const notes = $('notes').value.trim();
-  const total = money(
-  Object.values(cart).reduce((sum, entry) => {
-    const info = lineInfo(entry);
-    return info ? sum + info.price * entry.qty : sum;
-  }, 0)
-);
 
+  const subtotal = cartSubtotal();
+  const shipping = shippingFor(subtotal);
+  const total = subtotal + shipping;
 
   const text =
-`طلب جديد من Dentbox
+‎`طلب جديد من Dentbox
 
-الاسم/العيادة: ${name}
-الهاتف: ${phone}
-العنوان: ${address || 'غير محدد'}
+‎الاسم/العيادة: ${name}
+‎الهاتف: ${phone}
+‎العنوان: ${address || 'غير محدد'}
 
-المنتجات:
+‎المنتجات:
 ${items}
 
-الإجمالي: ${total}
-ملاحظات: ${notes || 'لا توجد'}`;
+‎مجموع المنتجات: ${money(subtotal)}
+‎التوصيل: ${shipping === 0 ? 'مجاني' : money(shipping)}
+‎الإجمالي: ${money(total)}
+‎ملاحظات: ${notes || 'لا توجد'}`;
 
   window.open(
     `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`,
