@@ -1264,8 +1264,8 @@ function renderCart(){
     bar.classList.toggle('done', left <= 0);
     bar.innerHTML =
       (left > 0
-        ? `باقي <b>${money(left)}</b> وياخذ توصيل مجاني 🚚`
-        : '🎉 طلبك مؤهل للتوصيل المجاني')
+        ? `باقي <b>${money(left)}</b>  توصيل مجاني 🚚`
+        : '🎉  التوصيل مجاني')
       + `<div class="ship-track"><div class="ship-fill" style="width:${pct}%"></div></div>`;
   }
 
