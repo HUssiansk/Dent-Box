@@ -1,0 +1,27 @@
+/* ===== Compact product cards (يُحمّل بعد الـ style الرئيسي) ===== */
+.products-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media(min-width:701px){
+  .products-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+}
+@media(min-width:1101px){
+  .products-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+}
+
+.product{border-radius:16px}
+.product-image{height:130px;padding:8px;font-size:40px}
+.product-image img{object-fit:contain!important}
+@media(min-width:701px){.product-image{height:150px}}
+
+.product-body{padding:9px 10px 10px}
+.product-tag{font-size:11px}
+.product h3{font-size:14px;min-height:40px;margin:3px 0 4px;line-height:1.45}
+.product-desc{
+  font-size:12px;min-height:34px;margin:0 0 8px;
+  display:-webkit-box;-webkit-line-clamp:2;
+  -webkit-box-orient:vertical;overflow:hidden;
+}
+.product-foot{gap:7px}
+.price{font-size:16px}
+.add-btn{padding:8px 6px;font-size:13px;border-radius:10px}
+
+.skeleton .sk-img{height:130px}
