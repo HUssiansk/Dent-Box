@@ -1,0 +1,1832 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Dentbox | متجر مستلزمات الأسنان</title>
+<meta name="description" content="متجر أدوات ومستلزمات طب الأسنان - طلب سريع عبر واتساب">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+<script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<style>
+:root{
+  --bg:#f5fafc;
+  --white:#fff;
+  --primary:#087fa8;
+  --primary-dark:#075d7c;
+  --secondary:#e2f6fb;
+  --ink:#173b47;
+  --muted:#6b838c;
+  --line:#dcecf1;
+  --green:#18b875;
+  --danger:#e25545;
+  --shadow:0 18px 45px rgba(17,58,70,.10)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Tajawal,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+a{text-decoration:none;color:inherit}
+button,input,select,textarea{font:inherit}
+img{max-width:100%;display:block}
+.container{width:min(1180px,calc(100% - 28px));margin:auto}
+
+/* ===== Topbar ===== */
+.topbar{background:var(--primary-dark);color:#eafaff;font-size:13px}
+.topbar .container{min-height:36px;display:flex;justify-content:space-between;align-items:center}
+
+/* ===== Header ===== */
+.header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.header-row{min-height:72px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:900}
+.brand-mark{width:var(--logo-size,52px);height:var(--logo-size,52px);display:grid;place-items:center;border-radius:12px;overflow:hidden;flex:none;background:#fff}
+.brand-mark img{width:100%;height:100%;object-fit:contain}
+.nav{display:flex;gap:26px;margin-right:auto}
+.nav a{font-weight:800;font-size:15px}
+.nav a:hover{color:var(--primary)}
+.header-actions{display:flex;gap:10px}
+.cart-btn{border:0;background:var(--primary);color:#fff;padding:10px 15px;border-radius:12px;font-weight:900;cursor:pointer;box-shadow:0 8px 18px rgba(8,127,168,.22)}
+.cart-count{display:inline-grid;place-items:center;min-width:22px;height:22px;background:#fff;color:var(--primary);border-radius:50%;font-size:12px;margin-right:5px}
+
+/* ===== Hero ===== */
+.hero{padding:58px 0 22px;background:linear-gradient(135deg,#eafaff,#fff 65%)}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:42px;align-items:center}
+.eyebrow{display:inline-block;background:var(--secondary);color:var(--primary);padding:8px 15px;border-radius:999px;font-size:14px;font-weight:900}
+h1{margin:15px 0 13px;color:var(--primary-dark);font-size:clamp(2.25rem,5vw,4.1rem);line-height:1.14}
+.hero p{color:var(--muted);font-size:1.12rem;max-width:570px;margin:0 0 23px}
+.btn{display:inline-block;border:1px solid transparent;padding:12px 21px;border-radius:12px;font-weight:900;cursor:pointer}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 10px 22px rgba(8,127,168,.2)}
+.btn-outline{background:#fff;color:var(--primary-dark);border-color:#b8dfe7}
+.hero-visual{height:390px;background:linear-gradient(135deg,#dff5fb,#f7fdff);border:1px solid #d5edf2;border-radius:30px;overflow:hidden;box-shadow:var(--shadow);display:grid;place-items:center}
+.hero-visual img{width:100%;height:100%;object-fit:cover}
+.hero-placeholder{text-align:center;color:#79b8c9;font-size:70px}
+
+/* ===== Features ===== */
+.features{padding:20px 0 8px;background:#fff;border-bottom:1px solid var(--line)}
+.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.feature{display:flex;align-items:center;gap:11px;padding:10px 7px}
+.feature-icon{width:42px;height:42px;display:grid;place-items:center;background:var(--secondary);border-radius:12px;color:var(--primary);font-size:20px}
+.feature strong{display:block;font-size:14px}
+.feature small{color:var(--muted)}
+
+/* ===== Sections ===== */
+.section{padding:55px 0}
+.section-head{text-align:center;margin-bottom:25px}
+.section-head h2{margin:0;color:var(--primary-dark);font-size:clamp(1.8rem,3vw,2.6rem)}
+.section-head p{margin:7px 0;color:var(--muted)}
+
+/* ===== Search / Sort ===== */
+.toolbar{display:flex;gap:10px;margin-bottom:15px}
+.search{position:relative;flex:1}
+.search input{width:100%;height:48px;border:1px solid var(--line);border-radius:13px;background:#fff;padding:10px 43px 10px 15px;outline:none}
+.search input:focus,.field input:focus,.field textarea:focus{border-color:#8acbdc;box-shadow:0 0 0 3px rgba(8,127,168,.08)}
+.search:before{content:"⌕";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:23px;color:var(--primary)}
+.sort{min-width:205px;border:1px solid var(--line);border-radius:13px;background:#fff;padding:0 12px;color:var(--ink)}
+
+/* ===== Categories ===== */
+.categories{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:19px}
+.category{border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;padding:8px 15px;font-weight:800;cursor:pointer}
+.category.active,.category:hover{background:var(--primary);border-color:var(--primary);color:#fff}
+
+/* ===== PRODUCTS ===== */
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.product{background:#fff;border:1px solid var(--line);border-radius:19px;overflow:hidden;display:flex;flex-direction:column;transition:.2s;min-width:0}
+.product:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.product-image{height:220px;width:100%;background:#fff;display:flex;align-items:center;justify-content:center;color:#9acdda;font-size:52px;overflow:hidden;padding:10px}
+.product-image img{width:100%;height:100%;object-fit:contain !important;object-position:center center;display:block;background:#fff}
+.product-image img[src$=".png"],.product-image img[src$=".webp"]{object-fit:contain !important}
+.product-body{padding:14px;display:flex;flex-direction:column;flex:1}
+.product-tag{color:var(--primary);font-size:12px;font-weight:900}
+.product h3{margin:6px 0 7px;min-height:47px;font-size:17px;line-height:1.5}
+.product-desc{margin:0 0 14px;color:var(--muted);font-size:13px;font-weight:700;min-height:40px}
+.product-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:7px}
+.price{color:var(--primary-dark);font-family:"Segoe UI",Arial,sans-serif;font-weight:700;font-size:17px;font-variant-numeric:tabular-nums;letter-spacing:.2px}
+.add-btn{border:0;background:var(--secondary);color:var(--primary);border-radius:10px;padding:8px 10px;font-weight:900;cursor:pointer}
+.add-btn:hover{background:var(--primary);color:#fff}
+.add-btn:disabled{opacity:.5;cursor:not-allowed}
+.empty,.loading{grid-column:1/-1;text-align:center;background:#fff;border:1px dashed #cfe2e7;border-radius:18px;padding:30px;color:var(--muted)}
+
+/* ===== About ===== */
+.about{background:linear-gradient(180deg,#effbff,#eaf8fd)}
+.about-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.about-box{background:#fff;border:1px solid var(--line);border-radius:21px;padding:27px;box-shadow:0 6px 20px rgba(17,58,70,.05)}
+.about-box h3{margin-top:0;color:var(--primary-dark);font-size:27px}
+.about-box p,.about-box li{color:var(--muted)}
+
+/* ===== Footer ===== */
+.footer{background:var(--primary-dark);color:#d7eef6;padding:20px 0}
+.footer-row{display:flex;justify-content:space-between;gap:15px;font-size:14px}
+
+/* ===== Cart ===== */
+.overlay{position:fixed;inset:0;background:rgba(8,33,43,.55);opacity:0;pointer-events:none;transition:.25s;z-index:50}
+.overlay.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;bottom:0;right:0;width:min(430px,94%);background:#fff;box-shadow:-20px 0 40px rgba(0,0,0,.12);transform:translateX(105%);transition:.28s;z-index:60;padding:21px 18px calc(21px + env(safe-area-inset-bottom));display:flex;flex-direction:column}
+.drawer.open{transform:translateX(0)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:13px;border-bottom:1px solid var(--line)}
+.drawer-head h3{margin:0;color:var(--primary-dark);font-size:27px}
+.close-btn{border:0;background:#f2f8fa;border-radius:50%;width:38px;height:38px;font-size:28px;color:var(--muted);cursor:pointer}
+.cart-list{flex:1;overflow:auto;padding-top:7px}
+.cart-item{display:grid;grid-template-columns:1fr auto auto;gap:7px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.cart-item strong{display:block;font-size:14px}
+.cart-item small{color:var(--muted)}
+.qty{display:flex;align-items:center;gap:7px;background:#f4fbfd;border-radius:10px;padding:4px 6px}
+.qty button{width:26px;height:26px;border:0;border-radius:7px;background:#fff;color:var(--primary);font-weight:900;cursor:pointer}
+.remove-btn{border:0;background:transparent;color:var(--danger);font-size:23px;cursor:pointer}
+.cart-footer{padding-top:13px;border-top:1px solid var(--line);overflow-y:auto;max-height:62vh}
+.total-row{display:flex;justify-content:space-between;font-weight:900;color:var(--primary-dark);margin-bottom:11px}
+.sub-row{display:flex;justify-content:space-between;font-weight:800;color:var(--muted);font-size:14px;margin-bottom:6px}
+.sub-row .free{color:var(--green);font-weight:900}
+.checkout-box{display:none;margin-top:11px}
+.checkout-box.show{display:block}
+.field{margin-bottom:9px}
+.field label{display:block;font-size:13px;font-weight:900;margin-bottom:4px}
+.field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 11px;outline:none}
+.field textarea{min-height:65px;resize:vertical}
+
+/* ===== Free Shipping Bar ===== */
+.ship-bar{margin-bottom:12px;font-size:13px;font-weight:800;color:var(--primary-dark)}
+.ship-track{height:8px;background:var(--secondary);border-radius:99px;overflow:hidden;margin-top:6px}
+.ship-fill{height:100%;background:var(--primary);border-radius:99px;transition:width .3s}
+.ship-bar.done{color:var(--green)}
+.ship-bar.done .ship-fill{background:var(--green)}
+
+/* ===== Toast ===== */
+.toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));bottom:auto;max-width:calc(100% - 32px);text-align:center;pointer-events:none;background:var(--primary-dark);color:#fff;border-radius:10px;padding:11px 15px;font-weight:800;box-shadow:var(--shadow);transform:translate(-50%,-140px);opacity:0;transition:.25s;z-index:200}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+/* ===== Category Storefront ===== */
+.category-showcase{padding:34px 0 8px;background:#fff}
+.category-showcase-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:18px}
+.category-showcase-head h2{margin:0;color:var(--primary-dark);font-size:clamp(1.7rem,3vw,2.35rem)}
+.category-showcase-head p{margin:4px 0 0;color:var(--muted)}
+.category-showcase-link{border:0;background:transparent;color:var(--primary);font-weight:900;cursor:pointer}
+.category-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.category-card{border:0;background:#fff;padding:0;cursor:pointer;text-align:center;color:var(--ink);font-weight:900}
+.category-card-media{height:205px;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,#edfaff,#dff4fa);border:1px solid var(--line);box-shadow:0 7px 20px rgba(17,58,70,.06);position:relative}
+.category-card-media img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .25s ease}
+.category-card:hover .category-card-media img{transform:scale(1.04)}
+.category-card-overlay{position:absolute;inset:auto 0 0;padding:28px 10px 10px;background:linear-gradient(transparent,rgba(0,0,0,.58));color:#fff;text-align:right}
+.category-card-title{display:block;font-size:16px;line-height:1.35}
+.category-card-count{display:block;font-size:11px;font-weight:700;opacity:.88}
+.category-card-fallback{height:100%;display:grid;place-items:center;font-size:55px}
+.category-card.active .category-card-media{outline:3px solid var(--primary);outline-offset:2px}
+.subcategory-bar{display:none;margin:20px 0 0;padding:12px;border:1px solid var(--line);background:#f7fcfd;border-radius:16px}
+.subcategory-bar.show{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.subcategory-label{font-weight:900;color:var(--primary-dark);margin-left:5px}
+.subcategory-btn{border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;padding:7px 13px;font-weight:800;cursor:pointer}
+.subcategory-btn.active,.subcategory-btn:hover{background:var(--primary);border-color:var(--primary);color:#fff}
+#materialBar{margin-top:10px}
+.products-section-title{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.back-categories{display:none;border:0;background:var(--secondary);color:var(--primary);border-radius:10px;padding:8px 12px;font-weight:900;cursor:pointer}
+.back-categories.show{display:block}
+
+/* ===== Mobile Menu ===== */
+.mobile-menu-popup{position:fixed;inset:0;background:rgba(8,33,43,.55);z-index:110;display:flex;align-items:flex-end}
+.mobile-menu-inner{width:100%;background:#fff;border-radius:25px 25px 0 0;padding:21px 20px calc(25px + env(safe-area-inset-bottom));box-shadow:0 -15px 40px rgba(0,0,0,.15);animation:menuUp .22s ease}
+.mobile-menu-inner h3{margin:0 0 13px;color:var(--primary-dark);font-size:24px}
+.mobile-menu-inner .menu-close{position:absolute;left:18px;top:15px;width:38px;height:38px;border:0;border-radius:50%;background:#f1f7f9;font-size:24px}
+.mobile-menu-inner a{display:block;padding:13px 3px;border-bottom:1px solid var(--line);font-weight:900}
+.mobile-menu-inner a:last-child{color:var(--primary)}
+@keyframes menuUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+
+/* ===== Bottom Nav ===== */
+.mobile-bottom-nav{position:fixed;right:18px;left:18px;bottom:16px;width:min(620px,calc(100% - 36px));height:66px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);padding:6px;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(220,236,241,.95);border-radius:22px;box-shadow:0 14px 40px rgba(10,67,82,.18);z-index:90}
+.mobile-nav-item{position:relative;border:0;background:transparent;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;border-radius:16px;cursor:pointer;font-weight:800;transition:.18s}
+.mobile-nav-item .nav-icon{font-size:22px;line-height:1}
+.mobile-nav-item span:last-child{font-size:11px}
+.mobile-nav-item.active,.mobile-nav-item:active{color:var(--primary);background:var(--secondary)}
+.mobile-cart-count{position:absolute;top:1px;right:calc(50% - 25px);min-width:19px;height:19px;display:grid;place-items:center;background:var(--danger);color:#fff;border:2px solid #fff;border-radius:50px;font-size:9px}
+
+/* ===== WhatsApp ===== */
+.wa-float{position:fixed;left:18px;bottom:96px;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 10px 25px rgba(37,211,102,.30);z-index:40;transition:transform .2s ease,box-shadow .2s ease}
+.wa-float:hover{transform:scale(1.06);box-shadow:0 14px 30px rgba(37,211,102,.38)}
+.wa-float svg{width:32px;height:32px;fill:currentColor;display:block}
+
+/* ===== Search Modal ===== */
+.search-modal{position:fixed;inset:0;background:rgba(8,33,43,.48);z-index:90;display:none;align-items:flex-start;justify-content:center;padding:80px 16px}
+.search-modal.open{display:flex}
+.search-modal-box{width:min(620px,100%);background:#fff;border-radius:20px;padding:16px;box-shadow:0 25px 60px rgba(0,0,0,.18)}
+.search-modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.search-modal-head strong{color:var(--primary-dark);font-size:19px}
+.search-modal-close{border:0;background:#f1f8fa;color:var(--muted);width:36px;height:36px;border-radius:10px;font-size:22px;cursor:pointer}
+.search-modal input{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px 15px;outline:none}
+
+/* ===== Variant Modal ===== */
+.variant-modal{position:fixed;inset:0;background:rgba(8,33,43,.48);z-index:95;display:none;align-items:flex-end;justify-content:center;padding:0}
+.variant-modal.open{display:flex}
+.variant-modal-box{width:min(520px,100%);max-height:80vh;overflow:auto;background:#fff;border-radius:22px 22px 0 0;padding:20px}
+@media(min-width:701px){
+  .variant-modal{align-items:center;padding:20px}
+  .variant-modal-box{border-radius:20px}
+}
+.variant-modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.variant-modal-head strong{color:var(--primary-dark);font-size:19px}
+.variant-modal-sub{margin:0 0 14px;color:var(--muted);font-size:13px}
+.variant-option{width:100%;text-align:right;border:1px solid var(--line);background:#fff;border-radius:13px;padding:13px 14px;margin-bottom:8px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--ink)}
+.variant-option:hover{border-color:var(--primary);background:var(--secondary)}
+.variant-option span:last-child{color:var(--primary-dark);font-weight:900;white-space:nowrap;margin-right:10px}
+.variant-check{width:22px;height:22px;flex:none;border:2px solid var(--line);border-radius:7px;margin-left:10px;display:grid;place-items:center;color:#fff;font-size:14px;transition:.15s}
+.variant-option{gap:0}
+.variant-option > span:nth-child(2){flex:1}
+.variant-option.selected{border-color:var(--primary);background:var(--secondary)}
+.variant-option.selected .variant-check{background:var(--primary);border-color:var(--primary)}
+.variant-option.selected .variant-check:after{content:"✓"}
+.variant-add-btn{position:sticky;bottom:0;width:100%;margin-top:6px;box-shadow:0 -8px 14px #fff}
+.variant-add-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
+
+
+/* ===== Nav icons (custom, follow site colors) ===== */
+.nav-icon.ico{display:block;width:24px;height:24px;background:currentColor;-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+.ico-home{--i:url(data:image/png;base64,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)}
+.ico-search{--i:url(data:image/png;base64,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)}
+.ico-cart{--i:url(data:image/png;base64,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)}
+
+/* ===== Live search results ===== */
+.search-modal-box{max-height:calc(100vh - 110px);display:flex;flex-direction:column}
+#searchResults{margin-top:10px;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:8px}
+#searchResults:empty{display:none}
+.sr-item{display:flex;align-items:center;gap:10px;padding:8px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.sr-img{width:52px;height:52px;flex:none;border-radius:10px;background:#f4f9fb;display:grid;place-items:center;overflow:hidden}
+.sr-img img{width:100%;height:100%;object-fit:contain}
+.sr-info{flex:1;min-width:0}
+.sr-info b{display:block;color:var(--primary-dark);font-size:14px;line-height:1.35;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.sr-info small{color:var(--muted);font-size:12px}
+.sr-btn{flex:none;border:0;border-radius:10px;background:var(--primary);color:#fff;font-weight:800;font-size:12px;padding:8px 10px;cursor:pointer}
+.sr-btn:disabled{background:#d9e4e8;color:#8aa}
+.sr-empty{text-align:center;color:var(--muted);padding:14px 0;font-size:14px}
+
+/* ===== Clear Search Button ===== */
+.clear-search{display:none;margin:8px auto 0;border:0;background:var(--secondary);color:var(--primary);border-radius:10px;padding:7px 14px;font-weight:900;cursor:pointer}
+.clear-search.show{display:inline-block}
+
+/* ===== Responsive ===== */
+@media(max-width:1100px){
+  body{padding-bottom:78px}
+  .topbar .container{justify-content:center}
+  .topbar span:last-child{display:none}
+  .header-row{min-height:64px}
+  .header .cart-btn{display:none}
+  .brand{font-size:19px}
+  .brand-mark{width:var(--logo-size,44px);height:var(--logo-size,44px);border-radius:11px}
+  .hero{padding-top:35px}
+  .hero-visual{height:270px}
+  .toolbar{display:block}
+  .sort{width:100%;height:46px;margin-top:9px}
+  .products-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+  .product-image{height:190px;padding:12px}
+  .product-image img{object-fit:contain !important;width:100%;height:100%}
+  .product-body{padding:11px}
+  .product h3{font-size:15px;min-height:43px}
+  .product-desc{font-size:12px;min-height:38px}
+  .price{font-size:15px;font-weight:700}
+  .add-btn{font-size:12px;padding:7px 8px}
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+  .feature{padding:8px 3px}
+  .feature small{font-size:11px}
+  .footer-row{display:block;text-align:center}
+  .mobile-bottom-nav{position:fixed;display:grid;grid-template-columns:repeat(4,1fr);right:0;left:0;bottom:0;width:auto;height:70px;padding:5px 7px max(5px,env(safe-area-inset-bottom));background:rgba(255,255,255,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:0;border-top:1px solid var(--line);border-radius:0;box-shadow:0 -8px 25px rgba(17,58,70,.11);z-index:45}
+  .mobile-nav-item{position:relative;border:0;background:transparent;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;border-radius:12px;cursor:pointer;font-weight:800;transition:.18s}
+  .mobile-nav-item .nav-icon{font-size:23px;line-height:1}
+  .mobile-nav-item span:last-child{font-size:10px}
+  .mobile-nav-item.active{color:var(--primary);background:var(--secondary)}
+  .mobile-cart-count{position:absolute;top:2px;right:calc(50% - 25px);min-width:18px;height:18px;display:grid;place-items:center;background:var(--danger);color:#fff;border:2px solid #fff;border-radius:50px;font-size:9px}
+  .section{padding:43px 0}
+}
+@media(max-width:980px){
+  .nav{display:none}
+  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .products-grid{grid-template-columns:repeat(2,1fr)}
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+  .category-cards{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:700px){
+  .category-showcase{padding:28px 0 5px}
+  .category-showcase-head{align-items:center}
+  .category-showcase-head p{font-size:12px}
+  .category-showcase-link{font-size:12px}
+  .category-cards{grid-template-columns:repeat(2,1fr);gap:12px}
+  .category-card-media{height:155px;border-radius:15px}
+  .category-card-title{font-size:14px}
+  .category-card-count{font-size:10px}
+  .subcategory-bar{margin-top:15px}
+  .wa-float{left:14px;bottom:88px;width:52px;height:52px}
+  .wa-float svg{width:29px;height:29px}
+}
+@media(max-width:400px){
+  .products-grid{grid-template-columns:1fr}
+  .product-image{height:220px;padding:15px}
+  .product-image img{object-fit:contain !important}
+  .features-grid{grid-template-columns:1fr}
+}
+
+/* ===== Bigger text in cart (تكبير الخط داخل السلة) ===== */
+.cart-item strong{font-size:17px}
+.cart-item small{font-size:16px;font-weight:700}
+.qty{font-size:17px;font-weight:800;padding:5px 7px}
+.qty button{width:34px;height:34px;font-size:19px}
+.remove-btn{font-size:27px}
+.ship-bar{font-size:16px}
+.sub-row{font-size:17px}
+.total-row{font-size:21px}
+.drawer .btn{font-size:18px;padding-top:15px;padding-bottom:15px}
+.field label{font-size:15px}
+.field input,.field textarea{font-size:16px}
+
+/* ===== Product cards: bigger price + full-width button ===== */
+.price{font-family:Tajawal,"Segoe UI",sans-serif;font-weight:900;font-size:21px;color:var(--primary-dark);letter-spacing:0}
+.product h3{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:16px;font-weight:800;line-height:1.5;min-height:48px}
+.product-foot{flex-direction:column;align-items:stretch;gap:10px}
+.product-foot .price{text-align:start}
+.add-btn{width:100%;padding:11px 10px;font-size:15px;border-radius:12px;background:var(--primary);color:#fff;transition:background .2s,transform .1s}
+.add-btn:hover{background:var(--primary-dark)}
+.add-btn:active{transform:scale(.97)}
+.add-btn:disabled{background:#d9e4e8;color:#7d939b}
+.add-btn.added{background:var(--green);color:#fff}
+@media(max-width:700px){
+  .price{font-size:19px}
+  .add-btn{font-size:14px;padding:10px 6px}
+  .product-body{padding:11px 11px 13px}
+}
+
+/* ===== Cart badge on nav icon ===== */
+.mobile-cart-count{min-width:21px !important;height:21px !important;font-size:11px !important;font-weight:900;background:var(--danger) !important;box-shadow:0 2px 6px rgba(226,85,69,.4)}
+.mobile-cart-count.bump{animation:bump .4s ease}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.45)}100%{transform:scale(1)}}
+
+/* ===== WhatsApp button: smaller, hidden while cart is open ===== */
+.wa-float{width:50px;height:50px;left:14px;bottom:86px}
+.wa-float svg{width:28px;height:28px}
+body:has(.drawer.open) .wa-float{display:none}
+@media(min-width:701px){.wa-float{bottom:22px}}
+
+/* ===== Skeleton loading ===== */
+.skeleton{background:#fff;border:1px solid var(--line);border-radius:19px;overflow:hidden;min-width:0}
+.sk{background:linear-gradient(90deg,#e8f1f4 25%,#f6fafb 50%,#e8f1f4 75%);background-size:200% 100%;animation:shimmer 1.3s infinite linear;border-radius:10px}
+.skeleton .sk-img{height:190px;border-radius:0}
+.skeleton .sk-body{padding:12px;display:flex;flex-direction:column;gap:10px}
+.skeleton .sk-l1{height:12px;width:40%}
+.skeleton .sk-l2{height:16px;width:85%}
+.skeleton .sk-l3{height:22px;width:50%}
+.skeleton .sk-btn{height:40px;border-radius:12px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ===== Theme toggle button ===== */
+.theme-btn{border:1px solid var(--line);background:var(--white);color:var(--primary-dark);width:42px;height:42px;border-radius:12px;font-size:19px;cursor:pointer;margin-inline-start:8px;display:inline-grid;place-items:center;line-height:1}
+.header-actions{display:flex;align-items:center}
+
+/* ===== Dark mode ===== */
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0e1a20;--white:#14262e;--ink:#e6f1f5;--muted:#95acb5;--line:#27424c;
+  --secondary:#17343f;--primary:#1c93bb;--primary-dark:#8fd8ee;--green:#2fcf8c;
+  --shadow:0 18px 45px rgba(0,0,0,.35)
+}
+html[data-theme="dark"] body{background:var(--bg);color:var(--ink)}
+html[data-theme="dark"] .header{background:rgba(14,26,32,.92)}
+html[data-theme="dark"] .topbar,
+html[data-theme="dark"] .footer{background:#0a2a36;color:#cfe8f0}
+html[data-theme="dark"] .hero{background:linear-gradient(135deg,#10303b,var(--bg) 65%)}
+html[data-theme="dark"] .hero-visual{background:linear-gradient(135deg,#12303a,#0e1a20);border-color:var(--line)}
+html[data-theme="dark"] .about{background:linear-gradient(180deg,#0f232b,#0c1b21)}
+html[data-theme="dark"] .features,
+html[data-theme="dark"] .category-showcase,
+html[data-theme="dark"] .about-box,
+html[data-theme="dark"] .product,
+html[data-theme="dark"] .skeleton,
+html[data-theme="dark"] .empty,
+html[data-theme="dark"] .loading,
+html[data-theme="dark"] .drawer,
+html[data-theme="dark"] .mobile-menu-inner,
+html[data-theme="dark"] .search-modal-box,
+html[data-theme="dark"] .variant-modal-box,
+html[data-theme="dark"] .sr-item,
+html[data-theme="dark"] .category-card,
+html[data-theme="dark"] .btn-outline,
+html[data-theme="dark"] .theme-btn{background:var(--white)}
+html[data-theme="dark"] .search input,
+html[data-theme="dark"] .search-modal input,
+html[data-theme="dark"] .sort,
+html[data-theme="dark"] .category,
+html[data-theme="dark"] .subcategory-btn,
+html[data-theme="dark"] .variant-option,
+html[data-theme="dark"] .field input,
+html[data-theme="dark"] .field textarea{background:#10222a;color:var(--ink);border-color:var(--line)}
+html[data-theme="dark"] .subcategory-bar{background:#10222a}
+html[data-theme="dark"] .category-card-media{background:linear-gradient(135deg,#12303a,#0e1a20)}
+html[data-theme="dark"] .close-btn,
+html[data-theme="dark"] .search-modal-close,
+html[data-theme="dark"] .mobile-menu-inner .menu-close,
+html[data-theme="dark"] .qty,
+html[data-theme="dark"] .sr-img{background:#1b343f;color:var(--ink)}
+html[data-theme="dark"] .qty button{background:#26434e;color:#fff}
+html[data-theme="dark"] .mobile-bottom-nav{background:rgba(16,34,42,.96);border-color:var(--line)}
+html[data-theme="dark"] .mobile-nav-item.active{background:var(--secondary);color:#7fd3ee}
+html[data-theme="dark"] .product-image{background:#fff;margin:8px 8px 0;width:auto;border-radius:14px}
+html[data-theme="dark"] .add-btn{background:var(--primary);color:#fff}
+html[data-theme="dark"] .add-btn:hover{background:#1580a3}
+html[data-theme="dark"] .add-btn:disabled{background:#2a3f48;color:#7d939b}
+html[data-theme="dark"] .add-btn.added{background:var(--green);color:#06281a}
+html[data-theme="dark"] .toast{background:#e6f6fb;color:#073a4c}
+html[data-theme="dark"] .cart-count{background:#fff;color:#075d7c}
+html[data-theme="dark"] .sk{background:linear-gradient(90deg,#1b343f 25%,#254652 50%,#1b343f 75%);background-size:200% 100%}
+html[data-theme="dark"] ::placeholder{color:#6f8993}
+html[data-theme="dark"] .search-modal,
+html[data-theme="dark"] .variant-modal{background:rgba(0,0,0,.6)}
+</style>
+
+
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <span>توصيل سريع داخل العراق</span>
+    <span>للطلب والاستفسار: 07823577749</span>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container header-row">
+    <a href="#top" class="brand">
+      <span class="brand-mark"><img src="logo.png" alt="Dentbox"></span>
+      <span>Dentbox</span>
+    </a>
+    <nav class="nav" aria-label="التنقل">
+      <a href="#products">المنتجات</a>
+      <a href="#about">من نحن</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="الوضع الداكن">🌙</button>
+      <button class="cart-btn" id="openCart" type="button">السلة <span class="cart-count" id="cartCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">متجر موثوق لمستلزمات الأسنان</span>
+      <h1>كل ما تحتاجه عيادتك في مكان واحد</h1>
+      <p>أدوات ومستلزمات طب الأسنان المختارة بعناية، بأسعار مناسبة وطلب مباشر وسريع عبر واتساب.</p>
+    </div>
+    <div class="hero-visual">
+      <img src="hero.jpg" alt="أدوات ومستلزمات الأسنان" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div class="hero-placeholder" style="display:none">🦷</div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container features-grid">
+    <div class="feature"><span class="feature-icon">✓</span><div><strong>جودة موثوقة</strong><small>منتجات مختارة</small></div></div>
+    <div class="feature"><span class="feature-icon">⚡</span><div><strong>طلب سريع</strong><small>بخطوات سهلة</small></div></div>
+    <div class="feature"><span class="feature-icon">▣</span><div><strong>تنوع كبير</strong><small>لأعمالك اليومية</small></div></div>
+    <div class="feature"><span class="feature-icon">☎</span><div><strong>دعم مباشر</strong><small>خدمة عملاء</small></div></div>
+  </div>
+</section>
+
+<section class="category-showcase" id="shopCategories">
+  <div class="container">
+    <div class="category-showcase-head">
+      <div>
+        <h2>أقسام المتجر</h2>
+        <p>اختار القسم حتى تشوف الأنواع والمنتجات بداخله</p>
+      </div>
+      <button class="category-showcase-link" id="showAllProducts" type="button">كل المنتجات</button>
+    </div>
+    <div class="category-cards" id="categoryCards"></div>
+    <div class="subcategory-bar" id="subcategoryBar"></div>
+    <div class="subcategory-bar" id="materialBar"></div>
+  </div>
+</section>
+
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-head">
+      <div class="products-section-title">
+        <h2 id="productsTitle">المنتجات</h2>
+        <button class="back-categories" id="backCategories" type="button">← الأقسام</button>
+      </div>
+      <p id="results">جاري تحميل المنتجات...</p>
+      <button class="clear-search" id="clearSearchBtn" type="button">✕ مسح البحث</button>
+    </div>
+    <div class="products-grid" id="productsGrid">
+      <div class="skeleton"><div class="sk sk-img"></div><div class="sk-body"><div class="sk sk-l1"></div><div class="sk sk-l2"></div><div class="sk sk-l3"></div><div class="sk sk-btn"></div></div></div><div class="skeleton"><div class="sk sk-img"></div><div class="sk-body"><div class="sk sk-l1"></div><div class="sk sk-l2"></div><div class="sk sk-l3"></div><div class="sk sk-btn"></div></div></div><div class="skeleton"><div class="sk sk-img"></div><div class="sk-body"><div class="sk sk-l1"></div><div class="sk sk-l2"></div><div class="sk sk-l3"></div><div class="sk sk-btn"></div></div></div><div class="skeleton"><div class="sk sk-img"></div><div class="sk-body"><div class="sk sk-l1"></div><div class="sk sk-l2"></div><div class="sk sk-l3"></div><div class="sk sk-btn"></div></div></div><div class="skeleton"><div class="sk sk-img"></div><div class="sk-body"><div class="sk sk-l1"></div><div class="sk sk-l2"></div><div class="sk sk-l3"></div><div class="sk sk-btn"></div></div></div><div class="skeleton"><div class="sk sk-img"></div><div class="sk-body"><div class="sk sk-l1"></div><div class="sk sk-l2"></div><div class="sk sk-l3"></div><div class="sk sk-btn"></div></div></div><div class="skeleton"><div class="sk sk-img"></div><div class="sk-body"><div class="sk sk-l1"></div><div class="sk sk-l2"></div><div class="sk sk-l3"></div><div class="sk sk-btn"></div></div></div><div class="skeleton"><div class="sk sk-img"></div><div class="sk-body"><div class="sk sk-l1"></div><div class="sk sk-l2"></div><div class="sk sk-l3"></div><div class="sk sk-btn"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section about" id="about">
+  <div class="container about-grid">
+    <div class="about-box">
+      <h3>من نحن؟</h3>
+      <p>نقدم لعيادات الأسنان وطلاب الطب حلولاً عملية ومباشرة لشراء المستلزمات اليومية، مع منتجات مختارة ومتابعة سهلة.</p>
+      <ul>
+        <li>منتجات ذات جودة مناسبة</li>
+        <li>أسعار واضحة ودعم مباشر</li>
+        <li>طلب سهل عبر واتساب</li>
+      </ul>
+    </div>
+    <div class="about-box">
+      <h3>هل تحتاج نصيحة؟</h3>
+      <p>أرسل اسم المنتج أو صورة المنتج وسنساعدك في العثور عليه بسرعة.</p>
+      <a class="btn btn-primary" href="https://wa.me/9647823577749" target="_blank" rel="noopener">راسلنا الآن</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer" id="contact">
+  <div class="container footer-row">
+    <span>© Dentbox — جميع الحقوق محفوظة.</span>
+    <span>الطلبات والاستفسارات: واتساب</span>
+  </div>
+</footer>
+
+<!-- ===== Cart Overlay ===== -->
+<div class="overlay" id="overlay"></div>
+
+<aside class="drawer" id="drawer" aria-label="سلة الطلب">
+  <div class="drawer-head">
+    <h3>سلة الطلب</h3>
+    <button class="close-btn" id="closeCart" type="button">×</button>
+  </div>
+
+  <div class="cart-list" id="cartList"></div>
+
+  <div class="cart-footer">
+
+    <div class="ship-bar" id="shipBar" style="display:none"></div>
+
+    <div class="sub-row" id="subRow" style="display:none">
+      <span>مجموع المنتجات</span>
+      <span id="subtotal">0 د.ع</span>
+    </div>
+    <div class="sub-row" id="shipRow" style="display:none">
+      <span>التوصيل</span>
+      <span id="shipCost">0 د.ع</span>
+    </div>
+
+    <div class="total-row">
+      <span>الإجمالي</span>
+      <span id="total">0 د.ع</span>
+    </div>
+
+    <button class="btn btn-primary" id="showCheckout" type="button" style="width:100%">متابعة الطلب عبر واتساب</button>
+
+    <form class="checkout-box" id="checkoutForm">
+      <div class="field">
+        <label for="customerName">الاسم أو اسم العيادة *</label>
+        <input id="customerName" required maxlength="80">
+
+      </div>
+      <div class="field">
+        <label for="phone">رقم الهاتف *</label>
+        <input id="phone" type="tel" required placeholder="07xxxxxxxxx" maxlength="11" pattern="07[0-9]{9}" inputmode="numeric" title="اكتب رقم عراقي من 11 رقم يبدأ بـ 07">
+
+      </div>
+      <div class="field">
+        <label for="address">المحافظة والعنوان</label>
+        <input id="address" maxlength="200">
+        
+      </div>
+      <div class="field">
+        <label for="notes">ملاحظات</label>
+        <textarea id="notes" maxlength="500"></textarea>
+
+      </div>
+      <button class="btn btn-primary" type="submit" style="width:100%">إرسال الطلب</button>
+    </form>
+  </div>
+</aside>
+
+<!-- ===== Mobile Bottom Navigation ===== -->
+<nav class="mobile-bottom-nav" aria-label="القائمة السفلية">
+  <button class="mobile-nav-item active" id="mobileHome" type="button">
+    <span class="nav-icon ico ico-home"></span><span>الرئيسية</span>
+  </button>
+  <button class="mobile-nav-item" id="mobileSearch" type="button">
+    <span class="nav-icon ico ico-search"></span><span>البحث</span>
+  </button>
+  <button class="mobile-nav-item" id="mobileCart" type="button">
+    <span class="nav-icon ico ico-cart"></span><span>السلة</span>
+    <b class="mobile-cart-count" id="mobileCartCount" style="display:none">0</b>
+  </button>
+  <button class="mobile-nav-item" id="mobileMenu" type="button">
+    <span class="nav-icon">☰</span><span>القائمة</span>
+  </button>
+</nav>
+
+<!-- ===== WhatsApp ===== -->
+<a class="wa-float" href="https://wa.me/9647823577749" target="_blank" rel="noopener" aria-label="واتساب">
+<svg viewBox="0 0 32 32" aria-hidden="true">
+<path d="M16 3.2a12.8 12.8 0 0 0-11 19.3L3.4 28.6l6.3-1.6A12.8 12.8 0 1 0 16 3.2Zm0 23.2a10.3 10.3 0 0 1-5.3-1.5l-.4-.2-3.7 1 .9-3.6-.2-.4A10.3 10.3 0 1 1 16 26.4Zm5.7-7.7c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2c-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.7.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.3c.2.2 2.3 3.6 5.6 4.9.8.3 1.5.5 2 .6.8.2 1.6.2 2.2.1.7-.1 2.1-.9 2.4-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.6-.4Z"/>
+</svg>
+</a>
+
+<!-- ===== Search Modal ===== -->
+<div class="search-modal" id="searchModal">
+  <div class="search-modal-box">
+    <div class="search-modal-head">
+      <strong>البحث عن منتج</strong>
+      <button class="search-modal-close" id="closeSearchModal" type="button">×</button>
+    </div>
+    <input id="searchModalInput" type="search" placeholder="ابحث عن منتج أو أداة..." autocomplete="off">
+    <div id="searchResults"></div>
+  </div>
+</div>
+
+<!-- ===== Variant Modal ===== -->
+<div class="variant-modal" id="variantModal">
+  <div class="variant-modal-box">
+    <div class="variant-modal-head">
+      <strong id="variantModalTitle">اختر النوع</strong>
+      <button class="search-modal-close" id="closeVariantModal" type="button">×</button>
+    </div>
+    <p class="variant-modal-sub">اختر نوعاً أو أكثر ثم اضغط إضافة</p>
+    <div id="variantModalList"></div>
+    <button class="btn btn-primary variant-add-btn" id="variantAddBtn" type="button" disabled>اختر نوعاً أو أكثر</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0"></script>
+
+
+<script>
+
+const SUPABASE_URL = 'https://ncurbamdczoiafvcnhzd.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_I_8sCiOUrVQzSi_6inzPYQ_nzWfZksF';
+const WHATSAPP = '9647823577749';
+
+/* ===== إعدادات التوصيل (غيّر الأرقام من هنا فقط) ===== */
+const FREE_SHIPPING_MIN = 50000;  // الطلب اللي يوصل هذا المبلغ يحصل توصيل مجاني
+const SHIPPING_FEE = 5000;        // أجرة التوصيل للطلبات الأقل من الحد
+
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let products = [];
+
+let cart = JSON.parse(localStorage.getItem('dentbox-cart') || '{}');
+
+/* ترحيل أي سلة قديمة كانت مخزنة كأرقام فقط */
+(function migrateCart(){
+  let changed = false;
+  Object.keys(cart).forEach(k => {
+    if(typeof cart[k] === 'number'){
+      cart[k] = { productId:k, variantName:null, qty:cart[k] };
+      changed = true;
+    }
+  });
+  if(changed){
+    localStorage.setItem('dentbox-cart', JSON.stringify(cart));
+  }
+})();
+
+let active = 'all';
+let term = '';
+
+const $ = id => document.getElementById(id);
+
+/* ===== Search ===== */
+
+const searchModal = $('searchModal');
+const searchModalInput = $('searchModalInput');
+
+function openSearchModal(){
+  searchModal.classList.add('open');
+  searchModalInput.value = term;
+  renderSearchResults();
+  setTimeout(() => searchModalInput.focus(), 50);
+}
+
+function closeSearchModal(){
+  searchModal.classList.remove('open');
+}
+
+function clearSearch(){
+  term = '';
+  searchModalInput.value = '';
+  $('searchResults').innerHTML = '';
+  $('clearSearchBtn').classList.remove('show');
+  renderProducts();
+}
+
+function dismissSearch(){
+  clearSearch();
+  closeSearchModal();
+  setActive('mobileHome');
+}
+
+
+function renderSearchResults(){
+  const box = $('searchResults');
+  const q = searchModalInput.value.trim().toLowerCase();
+  if(!q){ box.innerHTML = ''; return; }
+  const list = products.filter(p =>
+    `${p.name} ${p.desc||''} ${p.cat} ${p.subcategory||''} ${p.material||''}`.toLowerCase().includes(q)
+  ).slice(0, 12);
+  if(!list.length){ box.innerHTML = '<div class="sr-empty">لم نجد منتجات مطابقة</div>'; return; }
+  box.innerHTML = list.map(p => {
+    const hasV = p.variants && p.variants.length > 0;
+    const btn = !available(p)
+      ? '<button class="sr-btn" disabled>غير متوفر</button>'
+      : hasV
+        ? `<button class="sr-btn" data-sr-variants="${esc(p.id)}">اختر النوع</button>`
+        : `<button class="sr-btn" data-sr-add="${esc(p.id)}">أضف</button>`;
+    return `<div class="sr-item">
+      <div class="sr-img">${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy">` : '🦷'}</div>
+      <div class="sr-info"><b>${esc(p.name || '')}</b><small>${esc(p.cat)} · ${priceLabel(p)}</small></div>
+      ${btn}
+    </div>`;
+  }).join('');
+  box.querySelectorAll('[data-sr-add]').forEach(b => b.onclick = () => addToCart(b.dataset.srAdd));
+  box.querySelectorAll('[data-sr-variants]').forEach(b => b.onclick = () => openVariantModal(b.dataset.srVariants));
+}
+
+searchModalInput.oninput = e => {
+  term = e.target.value;
+  renderProducts();
+  renderSearchResults();
+};
+
+/* Enter = إبقاء النتائج وإغلاق النافذة */
+searchModalInput.onkeydown = e => {
+  if(e.key !== 'Enter') return;
+  e.preventDefault();
+  searchModalInput.blur();
+  closeSearchModal();
+  setActive('mobileHome');
+
+  if(term.trim()){
+    $('clearSearchBtn').classList.add('show');
+    document.querySelector('#products')
+      .scrollIntoView({behavior:'smooth', block:'start'});
+  }else{
+    clearSearch();
+  }
+};
+
+$('closeSearchModal').onclick = dismissSearch;
+
+searchModal.onclick = e => {
+  if(e.target === searchModal) dismissSearch();
+};
+
+$('clearSearchBtn').onclick = clearSearch;
+
+/* ===== Variant Modal Logic ===== */
+
+const variantModal = $('variantModal');
+let selectedVariants = new Set();
+let variantProductId = null;
+
+function updateVariantAddBtn(){
+  const b = $('variantAddBtn');
+  const n = selectedVariants.size;
+  b.disabled = !n;
+  b.textContent = n ? `إضافة ${n} للسلة` : 'اختر نوعاً أو أكثر';
+}
+
+function openVariantModal(productId){
+
+  const p = products.find(p => String(p.id) === String(productId));
+
+  if(!p || !p.variants || !p.variants.length) return;
+
+  variantProductId = p.id;
+  selectedVariants = new Set();
+
+  $('variantModalTitle').textContent = p.name;
+
+  $('variantModalList').innerHTML =
+    p.variants.map(v => `
+<button class="variant-option" type="button" data-variant="${esc(v.name)}">
+  <span class="variant-check"></span>
+  <span>${esc(v.name)}</span>
+  <span>${money(v.price ?? p.price)}</span>
+</button>
+`).join('');
+
+  $('variantModalList')
+    .querySelectorAll('[data-variant]')
+    .forEach(b => {
+      b.onclick = () => {
+        const name = b.dataset.variant;
+        if(selectedVariants.has(name)){
+          selectedVariants.delete(name);
+          b.classList.remove('selected');
+        }else{
+          selectedVariants.add(name);
+          b.classList.add('selected');
+        }
+        updateVariantAddBtn();
+      };
+    });
+
+  updateVariantAddBtn();
+  variantModal.classList.add('open');
+}
+
+$('variantAddBtn').onclick = () => {
+
+  if(!selectedVariants.size) return;
+
+  const id = variantProductId;
+
+  selectedVariants.forEach(name => {
+    const key = `${id}__${name}`;
+    if(cart[key]){
+      cart[key].qty++;
+    }else{
+      cart[key] = { productId:id, variantName:name, qty:1 };
+    }
+  });
+
+  const n = selectedVariants.size;
+
+  saveCart();
+  closeVariantModal();
+  toast(`تمت إضافة ${n} ${n === 1 ? 'نوع' : 'أنواع'} إلى السلة`);
+
+};
+
+function closeVariantModal(){
+  variantModal.classList.remove('open');
+}
+
+$('closeVariantModal').onclick = closeVariantModal;
+
+variantModal.onclick = e => {
+  if(e.target === variantModal){
+    closeVariantModal();
+  }
+};
+
+/* ===== Helpers ===== */
+
+const money = n =>
+  Number(n || 0).toLocaleString('ar-IQ') + ' د.ع';
+
+const esc = s =>
+  String(s ?? '').replace(
+    /[&<>"']/g,
+    c => ({
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      '"':'&quot;',
+      "'":'&#39;'
+    }[c])
+  );
+
+function priceLabel(p){
+
+  if(!p.variants || !p.variants.length){
+    return money(p.price);
+  }
+
+  const prices = p.variants.map(v => Number(v.price ?? p.price));
+
+  const min = Math.min(...prices);
+
+  return 'يبدأ من ' + money(min);
+
+}
+
+/* ===== Normalize Product ===== */
+
+function normalize(p){
+
+  const raw = String(p.category || p.cat || '').trim();
+
+  const map = {
+    fill:'Composites',
+    exam:'Instruments',
+    clean:'Instruments',
+    surgery:'Surgical Instruments',
+    consumables:'Disposable Items',
+    'surgical instruments':'Surgical Instruments',
+    'disposable items':'Disposable Items',
+    'prosetheice equipment':'Prosthetic Equipment',
+    'prosthetic equipment':'Prosthetic Equipment',
+    'burs':'Burs',
+    'bur':'Burs'
+  };
+
+  const key = raw.toLowerCase();
+
+  return {
+    id:p.id,
+    name:p.name || '',
+    cat:map[key] || raw || 'Instruments',
+    subcategory:String(p.subcategory || p.sub_category || p.type || '').trim(),
+    material:String(p.material || '').trim(),
+    desc:p.description || p.desc || '',
+    price:Number(p.price || 0),
+    stock:p.stock ?? p.quantity ?? p.available ?? true,
+    image:p.image_url || p.image || p.photo_url || '',
+    variants:Array.isArray(p.variants) ? p.variants : []
+  };
+
+}
+
+/* ===== Stock ===== */
+
+function available(p){
+  return !(
+    p.stock === false ||
+    p.stock === 0 ||
+    p.stock === '0' ||
+    String(p.stock).toLowerCase() === 'out of stock'
+  );
+}
+
+/* ===== Cart ===== */
+
+function saveCart(){
+  localStorage.setItem('dentbox-cart', JSON.stringify(cart));
+  renderCart();
+}
+
+/* مجموع المنتجات بدون التوصيل */
+function cartSubtotal(){
+  return Object.values(cart).reduce((s, e) => {
+    if(!e || e.qty <= 0) return s;
+    const i = lineInfo(e);
+    return i ? s + i.price * e.qty : s;
+  }, 0);
+}
+
+/* أجرة التوصيل: 0 إذا السلة فارغة أو وصلت للحد المجاني */
+function shippingFor(subtotal){
+  if(subtotal <= 0) return 0;
+  return subtotal >= FREE_SHIPPING_MIN ? 0 : SHIPPING_FEE;
+}
+
+/* ===== Categories ===== */
+
+function getCategoryGroups(){
+
+  const wanted = [
+    "Composites",
+    "Instruments",
+    "Devices",
+    "Surgical Instruments",
+    "Disposable Items",
+    "Prosthetic Equipment",
+    "Burs"
+  ];
+
+  return wanted.map(name => [
+    name,
+    products.filter(p => (p.cat || "").trim() === name)
+  ]);
+
+}
+
+/* ===== Category Images ===== */
+
+const categoryImages = {
+  "Composites":"composites.jpg",
+  "Instruments":"instruments.jpg",
+  "Devices":"devices.jpg",
+  "surgical instruments":"surgical-instruments.jpg",
+  "Surgical Instruments":"surgical-instruments.jpg",
+  "Disposable items":"disposable-items.jpg",
+  "Disposable Items":"disposable-items.jpg",
+  "Prosetheice equipment":"prosetheice-equipment.jpg",
+  "Prosthetic Equipment":"prosetheice-equipment.jpg",
+  "Burs":"burs.jpeg"
+};
+
+/* ===== Render Categories ===== */
+
+function renderCategoryCards(){
+
+  const groups = getCategoryGroups();
+
+  $('categoryCards').innerHTML =
+    groups.length
+    ?
+    groups.map(([name,items]) => {
+
+      const image = categoryImages[name] || items[0]?.image || "";
+
+      return `
+
+<button class="category-card ${active === name ? 'active' : ''}" data-show-cat="${esc(name)}">
+
+  <div class="category-card-media">
+
+    ${
+      image
+      ?
+      `<img src="${esc(image)}" alt="${esc(name)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`
+      :
+      ''
+    }
+
+    <div class="category-card-fallback" style="${image ? 'display:none' : ''}">🦷</div>
+
+    <div class="category-card-overlay">
+      <span class="category-card-title">${esc(name)}</span>
+      <span class="category-card-count">${items.length} منتج</span>
+    </div>
+
+  </div>
+
+</button>
+
+`;
+
+    }).join('')
+    :
+    `<div class="empty">لا توجد أقسام حالياً.</div>`;
+
+  document
+    .querySelectorAll('[data-show-cat]')
+    .forEach(b => {
+
+      b.onclick = () => {
+
+        active = b.dataset.showCat;
+
+        window.currentSubcategory = 'all';
+        window.currentMaterial = 'all';
+
+        renderCategoryCards();
+        renderProducts();
+        renderSubcategories();
+
+        $('backCategories').classList.add('show');
+
+        document
+          .querySelector('#products')
+          .scrollIntoView({behavior:'smooth', block:'start'});
+
+      };
+
+    });
+
+}
+
+/* ===== Subcategories ===== */
+
+/* أقسام فرعية ثابتة تظهر دائماً داخل القسم حتى لو ما كو منتجات بعد */
+const fixedSubcategories = {
+  'Burs': ['Turbine', 'Handpiece']
+};
+
+function renderSubcategoriesBar(){
+
+  const bar = $('subcategoryBar');
+
+  if(active === 'all' || !active){
+    bar.classList.remove('show');
+    bar.innerHTML = '';
+    return;
+  }
+
+  const items = products.filter(p => p.cat === active);
+
+  const subs = fixedSubcategories[active] || [
+    ...new Set(
+      items
+        .map(p => p.subcategory)
+        .filter(Boolean)
+    )
+  ];
+
+  if(!subs.length){
+    bar.classList.remove('show');
+    bar.innerHTML = '';
+    return;
+  }
+
+  bar.classList.add('show');
+
+  bar.innerHTML = `
+
+<span class="subcategory-label">الأنواع:</span>
+
+<button class="subcategory-btn active" data-subcat="all">الكل</button>
+
+${subs.map(s => `
+  <button class="subcategory-btn" data-subcat="${esc(s)}">${esc(s)}</button>
+`).join('')}
+
+`;
+
+  document
+    .querySelectorAll('[data-subcat]')
+    .forEach(b => {
+
+      b.onclick = () => {
+
+        document
+          .querySelectorAll('[data-subcat]')
+          .forEach(x => x.classList.remove('active'));
+
+        b.classList.add('active');
+
+        window.currentSubcategory = b.dataset.subcat;
+
+        renderProducts();
+
+      };
+
+    });
+
+}
+
+/* ===== Material / Usage filter (Burs) ===== */
+
+const fixedMaterials = {
+  'Burs': ['Diamond', 'Carbide', 'Finishing', 'Polish', 'Surgical', 'Endo']
+};
+
+function renderMaterials(){
+
+  const bar = $('materialBar');
+  const mats = fixedMaterials[active];
+
+  if(!mats){
+    bar.classList.remove('show');
+    bar.innerHTML = '';
+    return;
+  }
+
+  bar.classList.add('show');
+
+  bar.innerHTML = `
+<span class="subcategory-label">المادة / الاستخدام:</span>
+<button class="subcategory-btn active" data-mat="all">الكل</button>
+${mats.map(m => `<button class="subcategory-btn" data-mat="${esc(m)}">${esc(m)}</button>`).join('')}
+`;
+
+  bar.querySelectorAll('[data-mat]').forEach(b => {
+    b.onclick = () => {
+      bar.querySelectorAll('[data-mat]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      window.currentMaterial = b.dataset.mat;
+      renderProducts();
+    };
+  });
+
+}
+
+function renderSubcategories(){
+  renderSubcategoriesBar();
+  renderMaterials();
+}
+
+/* ===== Filter ===== */
+
+function filtered(){
+
+  let result = products.filter(p => {
+
+    const matchesCat = active === 'all' || p.cat === active;
+
+    const haystack = `
+      ${p.name}
+      ${p.desc}
+      ${p.cat}
+      ${p.subcategory || ''}
+      ${p.material || ''}
+    `.toLowerCase();
+
+    const matchesSearch = haystack.includes(term.toLowerCase());
+
+    const sub = window.currentSubcategory || 'all';
+
+    const matchesSub =
+      sub === 'all' ||
+      (p.subcategory || '').toLowerCase() === sub.toLowerCase();
+
+    const mat = window.currentMaterial || 'all';
+
+    const matchesMat =
+      mat === 'all' ||
+      (p.material || '').toLowerCase() === mat.toLowerCase();
+
+    return matchesCat && matchesSearch && matchesSub && matchesMat;
+
+  });
+
+  const s = $('sort')?.value || 'default';
+
+  if(s === 'price-low') result.sort((a,b) => a.price - b.price);
+
+  if(s === 'price-high') result.sort((a,b) => b.price - a.price);
+
+  if(s === 'name') result.sort((a,b) => a.name.localeCompare(b.name, 'ar'));
+
+  return result;
+
+}
+
+/* ===== RENDER PRODUCTS ===== */
+
+function renderProducts(){
+
+  const r = filtered();
+
+  $('productsTitle').textContent = active === 'all' ? 'المنتجات' : active;
+
+  $('results').textContent =
+    `عرض ${r.length} من ${
+      active === 'all'
+      ? products.length
+      : products.filter(p => p.cat === active).length
+    } منتج`;
+
+  $('productsGrid').innerHTML =
+    r.length
+    ?
+    r.map(p => {
+
+      const hasVariants = p.variants && p.variants.length > 0;
+
+      const btn =
+        !available(p)
+        ?
+        `<button class="add-btn" disabled>غير متوفر</button>`
+        :
+        hasVariants
+        ?
+        `<button class="add-btn" data-variants="${esc(p.id)}">اختر النوع</button>`
+        :
+        `<button class="add-btn" data-add="${esc(p.id)}">أضف للسلة</button>`;
+
+      return `
+
+<article class="product">
+
+  <div class="product-image">
+
+    ${
+      p.image
+      ?
+      `<img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='🦷'">`
+      :
+      '🦷'
+    }
+
+  </div>
+
+  <div class="product-body">
+
+    <span class="product-tag">${esc(p.cat)}${p.subcategory ? ' · ' + esc(p.subcategory) : ''}${p.material ? ' · ' + esc(p.material) : ''}</span>
+
+    <h3>${esc(p.name || 'منتج بدون اسم')}</h3>
+
+    <p class="product-desc">${esc(p.desc || '')}</p>
+
+    <div class="product-foot">
+      <span class="price">${priceLabel(p)}</span>
+      ${btn}
+    </div>
+
+  </div>
+
+</article>
+
+`;
+
+    }).join('')
+    :
+    `<div class="empty">لم نجد منتجات مطابقة للبحث.</div>`;
+
+  document
+    .querySelectorAll('[data-add]')
+    .forEach(b => {
+      b.onclick = () => {
+        addToCart(b.dataset.add);
+        const t = b.textContent;
+        b.textContent = '✓ تمت الإضافة';
+        b.classList.add('added');
+        setTimeout(() => { b.textContent = t; b.classList.remove('added'); }, 1000);
+      };
+    });
+
+  document
+    .querySelectorAll('[data-variants]')
+    .forEach(b => {
+      b.onclick = () => openVariantModal(b.dataset.variants);
+    });
+
+}
+
+/* ===== Add Cart ===== */
+
+function addToCart(id, variantName = null){
+
+  const p = products.find(p => String(p.id) === String(id));
+
+  if(!p || !available(p)) return;
+
+  const key = variantName ? `${id}__${variantName}` : String(id);
+
+  if(cart[key]){
+    cart[key].qty++;
+  }else{
+    cart[key] = { productId:id, variantName, qty:1 };
+  }
+
+  saveCart();
+
+  toast(
+    variantName
+    ? `تمت إضافة ${variantName} إلى السلة`
+    : 'تمت إضافة المنتج إلى السلة'
+  );
+
+}
+
+/* ===== Line Helpers ===== */
+
+function lineInfo(entry){
+
+  const product = products.find(p => String(p.id) === String(entry.productId));
+
+  if(!product) return null;
+
+  let price = product.price;
+
+  if(entry.variantName && product.variants){
+
+    const v = product.variants.find(v => v.name === entry.variantName);
+
+    if(v){
+      price = (v.price ?? product.price);
+    }
+
+  }
+
+  return {
+    product,
+    price:Number(price || 0),
+    variantName:entry.variantName
+  };
+
+}
+
+/* ===== Render Cart ===== */
+
+function renderCart(){
+
+  const rows =
+    Object.entries(cart)
+      .filter(([,entry]) => entry.qty > 0)
+      .map(([key,entry]) => {
+        const info = lineInfo(entry);
+        return info ? {key,entry,info} : null;
+      })
+      .filter(Boolean);
+
+  let subtotal = 0;
+  let count = 0;
+
+  rows.forEach(({entry,info}) => {
+    subtotal += info.price * entry.qty;
+    count += entry.qty;
+  });
+
+  const shipping = shippingFor(subtotal);
+  const total = subtotal + shipping;
+
+  $('cartCount').textContent = count;
+
+  $('mobileCartCount').textContent = count;
+
+  $('mobileCartCount').style.display = count ? 'grid' : 'none';
+  $('mobileCartCount').classList.remove('bump'); void $('mobileCartCount').offsetWidth; $('mobileCartCount').classList.add('bump');
+
+  /* المجموع + التوصيل + الإجمالي */
+  $('subtotal').textContent = money(subtotal);
+  $('subRow').style.display = subtotal > 0 ? 'flex' : 'none';
+  $('shipRow').style.display = subtotal > 0 ? 'flex' : 'none';
+
+  if(shipping === 0){
+    $('shipCost').innerHTML = '<span class="free">مجاني 🎉</span>';
+  }else{
+    $('shipCost').textContent = money(shipping);
+  }
+
+  $('total').textContent = money(total);
+
+  /* شريط التوصيل المجاني */
+  const bar = $('shipBar');
+
+  if(subtotal <= 0){
+    bar.style.display = 'none';
+  }else{
+    const left = FREE_SHIPPING_MIN - subtotal;
+    const pct = Math.min(100, Math.round(subtotal / FREE_SHIPPING_MIN * 100));
+    bar.style.display = 'block';
+    bar.classList.toggle('done', left <= 0);
+    bar.innerHTML =
+      (left > 0
+        ? `باقي <b>${money(left)}</b> وياخذ توصيل مجاني 🚚`
+        : '🎉 طلبك مؤهل للتوصيل المجاني')
+      + `<div class="ship-track"><div class="ship-fill" style="width:${pct}%"></div></div>`;
+  }
+
+  $('cartList').innerHTML =
+    rows.length
+    ?
+    rows.map(({key,entry,info}) => `
+
+<div class="cart-item">
+
+  <div>
+    <strong>${esc(info.product.name)}${info.variantName ? ' — ' + esc(info.variantName) : ''}</strong>
+    <small>${money(info.price)}</small>
+  </div>
+
+  <div class="qty">
+    <button type="button" data-minus="${esc(key)}">−</button>
+    <b>${entry.qty}</b>
+    <button type="button" data-plus="${esc(key)}">+</button>
+  </div>
+
+  <button type="button" class="remove-btn" data-remove="${esc(key)}">×</button>
+
+</div>
+
+`).join('')
+    :
+    `<div class="empty">السلة فارغة حالياً.</div>`;
+
+  document
+    .querySelectorAll('[data-plus]')
+    .forEach(b => {
+      b.onclick = () => {
+        const k = b.dataset.plus;
+        if(cart[k]){
+          cart[k].qty++;
+          saveCart();
+        }
+      };
+    });
+
+  document
+    .querySelectorAll('[data-minus]')
+    .forEach(b => {
+      b.onclick = () => {
+        const k = b.dataset.minus;
+        if(!cart[k]) return;
+        if(cart[k].qty <= 1){
+          delete cart[k];
+        }else{
+          cart[k].qty--;
+        }
+        saveCart();
+      };
+    });
+
+  document
+    .querySelectorAll('[data-remove]')
+    .forEach(b => {
+      b.onclick = () => {
+        delete cart[b.dataset.remove];
+        saveCart();
+      };
+    });
+
+}
+
+/* ===== Cart Drawer ===== */
+
+function openCart(){
+  $('drawer').classList.add('open');
+  $('overlay').classList.add('open');
+}
+
+function closeCart(){
+  $('drawer').classList.remove('open');
+  $('overlay').classList.remove('open');
+  $('checkoutForm').classList.remove('show');
+}
+
+/* ===== Toast ===== */
+
+function toast(m){
+  const t = $('toast');
+  t.textContent = m;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ===== Load Products ===== */
+
+async function loadProducts(){
+
+  try{
+
+    const { data, error } = await db.from('products').select('*');
+
+    if(error) throw error;
+
+    products = (data || []).map(normalize);
+
+    window.currentSubcategory = 'all';
+    window.currentMaterial = 'all';
+
+    renderCategoryCards();
+    renderSubcategories();
+    renderProducts();
+    renderCart();
+
+  }catch(e){
+
+    console.error(e);
+
+    $('results').textContent = 'تعذر تحميل المنتجات';
+
+    $('productsGrid').innerHTML = `
+      <div class="empty">
+        حدث خطأ في الاتصال.
+        حاول تحديث الصفحة أو التواصل عبر واتساب.
+      </div>
+    `;
+
+  }
+
+}
+
+/* ===== Mobile ===== */
+
+function setActive(id){
+
+  document
+    .querySelectorAll('.mobile-nav-item')
+    .forEach(x => x.classList.remove('active'));
+
+  $(id).classList.add('active');
+
+}
+
+function showMobileMenu(){
+
+  const m = document.createElement('div');
+
+  m.className = 'mobile-menu-popup';
+
+  m.innerHTML = `
+
+<div class="mobile-menu-inner">
+
+  <button class="menu-close" type="button">×</button>
+
+  <h3>القائمة</h3>
+
+  <a href="#top">🏠 الرئيسية</a>
+
+  <a href="#products">🦷 المنتجات</a>
+
+  <a href="#about">ℹ️ من نحن</a>
+
+  <a href="#contact">📞 تواصل معنا</a>
+
+  <a href="https://wa.me/${WHATSAPP}" target="_blank" rel="noopener">💬 واتساب</a>
+
+  <a href="#" id="menuTheme">${document.documentElement.dataset.theme === 'dark' ? '☀️ الوضع الفاتح' : '🌙 الوضع الداكن'}</a>
+
+</div>
+
+`;
+
+  document.body.appendChild(m);
+
+  m.querySelector('.menu-close').onclick = () => m.remove();
+
+  m.addEventListener('click', e => {
+    if(e.target === m) m.remove();
+  });
+
+  m.querySelectorAll('a').forEach(a => a.onclick = () => m.remove());
+
+  m.querySelector('#menuTheme').onclick = e => { e.preventDefault(); toggleTheme(); m.remove(); };
+
+}
+
+/* ===== Buttons ===== */
+
+$('showAllProducts').onclick = () => {
+
+  clearSearch();
+
+  active = 'all';
+
+  window.currentSubcategory = 'all';
+  window.currentMaterial = 'all';
+
+  renderCategoryCards();
+  renderSubcategories();
+  renderProducts();
+
+  document
+    .querySelector('#products')
+    .scrollIntoView({behavior:'smooth'});
+
+  $('backCategories').classList.remove('show');
+
+};
+
+$('backCategories').onclick = () => {
+
+  clearSearch();
+
+  active = 'all';
+
+  window.currentSubcategory = 'all';
+  window.currentMaterial = 'all';
+
+  renderCategoryCards();
+  renderSubcategories();
+  renderProducts();
+
+  document
+    .querySelector('#shopCategories')
+    .scrollIntoView({behavior:'smooth'});
+
+  $('backCategories').classList.remove('show');
+
+};
+
+$('openCart').onclick = openCart;
+
+$('closeCart').onclick = closeCart;
+
+$('overlay').onclick = closeCart;
+
+/* ===== Checkout ===== */
+
+$('showCheckout').onclick = () => {
+
+  if(!Object.keys(cart).length){
+    toast('أضف منتجاً إلى السلة أولاً');
+    return;
+  }
+
+  $('checkoutForm').classList.add('show');
+
+};
+
+$('checkoutForm').onsubmit = e => {
+
+  e.preventDefault();
+
+  const items =
+    Object.entries(cart)
+      .map(([,entry]) => {
+
+        const info = lineInfo(entry);
+
+        if(!info) return '';
+
+        const label =
+          info.variantName
+          ? `${info.product.name} (${info.variantName})`
+          : info.product.name;
+
+        return `- ${label} × ${entry.qty} (${money(info.price * entry.qty)})`;
+
+      })
+      .filter(Boolean)
+      .join('\n');
+
+  const name = $('customerName').value.trim();
+  const phone = $('phone').value.trim();
+  const address = $('address').value.trim();
+  const notes = $('notes').value.trim();
+
+  const subtotal = cartSubtotal();
+  const shipping = shippingFor(subtotal);
+  const total = subtotal + shipping;
+
+  const text =
+`طلب جديد من Dentbox
+
+الاسم/العيادة: ${name}
+الهاتف: ${phone}
+العنوان: ${address || 'غير محدد'}
+
+المنتجات:
+${items}
+
+مجموع المنتجات: ${money(subtotal)}
+التوصيل: ${shipping === 0 ? 'مجاني' : money(shipping)}
+الإجمالي: ${money(total)}
+ملاحظات: ${notes || 'لا توجد'}`;
+
+  window.open(
+    `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`,
+    '_blank',
+    'noopener'
+  );
+
+  toast('تم تجهيز الطلب في واتساب');
+
+};
+
+/* ===== Bottom Navigation ===== */
+
+$('mobileHome').onclick = () => {
+  window.scrollTo({top:0, behavior:'smooth'});
+  setActive('mobileHome');
+};
+
+$('mobileSearch').onclick = () => {
+  openSearchModal();
+  setActive('mobileSearch');
+};
+
+$('mobileCart').onclick = () => {
+  openCart();
+  setActive('mobileCart');
+};
+
+$('mobileMenu').onclick = () => {
+  showMobileMenu();
+  setActive('mobileMenu');
+};
+
+window.addEventListener('scroll', () => {
+  if(window.scrollY < 250){
+    setActive('mobileHome');
+  }
+});
+
+
+/* ===== Theme (dark / light) ===== */
+function applyTheme(t){
+  if(t === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  else document.documentElement.removeAttribute('data-theme');
+  const b = $('themeBtn');
+  if(b) b.textContent = t === 'dark' ? '☀️' : '🌙';
+  let m = document.querySelector('meta[name="theme-color"]');
+  if(!m){ m = document.createElement('meta'); m.name = 'theme-color'; document.head.appendChild(m); }
+  m.content = t === 'dark' ? '#0e1a20' : '#f5fafc';
+}
+function toggleTheme(){
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  try{ localStorage.setItem('theme', next); }catch(e){}
+}
+$('themeBtn').onclick = toggleTheme;
+applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+
+/* ===== Start ===== */
+
+loadProducts();
+
+</script>
+
+<!-- ===== Auto Update Check ===== -->
+<script>
+(function(){
+
+  let currentVersion = null;
+
+  async function checkForUpdate(){
+
+    try{
+
+      const res = await fetch('version.json?t=' + Date.now(), { cache: 'no-store' });
+
+      if(!res.ok) return;
+
+      const data = await res.json();
+
+      if(currentVersion === null){
+        currentVersion = data.v;
+      }else if(data.v !== currentVersion){
+        location.reload();
+      }
+
+    }catch(e){}
+
+  }
+
+  setInterval(checkForUpdate, 15000);
+
+  checkForUpdate();
+
+})();
+</script>
+
+</body>
+</html>
