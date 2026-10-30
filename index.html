@@ -1734,6 +1734,34 @@ ${items}
 التوصيل: ${shipping === 0 ? 'مجاني' : money(shipping)}
 الإجمالي: ${money(total)}
 ملاحظات: ${notes || 'لا توجد'}`;
+  /* حفظ الطلب بقاعدة البيانات */
+  const orderItems = Object.values(cart).map(entry => {
+    const info = lineInfo(entry);
+    return info ? {
+      product_id: info.product.id,
+      name: info.product.name,
+      variant: info.variantName || '',
+      qty: entry.qty,
+      price: info.price
+    } : null;
+  }).filter(Boolean);
+
+  db.from('orders').insert({
+    id: 'o' + Date.now() + Math.random().toString(36).slice(2, 6),
+    customer_name: name,
+    customer_phone: phone,
+    address: address,
+    items: orderItems,
+    subtotal: subtotal,
+    delivery: shipping,
+    total: total,
+    customer_note: notes,
+    status: 'none',
+    payment_status: 'unpaid',
+    paid_amount: 0
+  }).then(({ error }) => {
+    if (error) console.error('فشل حفظ الطلب:', error);
+  });
 
   window.open(
     `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`,
