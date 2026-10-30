@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>طلبات Dent Box (معاينة)</title>
+<style>
+:root{--bg:#f4f8fb;--card:#fff;--ink:#16323f;--soft:#4c6673;--pri:#1c6e8c;--dark:#124a5f;--line:#dfeaf0;--ok:#16865b;--bad:#b3543f;--chip:#e6f2f7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1c23;--card:#172a34;--ink:#e6f0f5;--soft:#9ab4c1;--pri:#3a9bbd;--dark:#9fd3e6;--line:#25404d;--ok:#4fc58f;--bad:#e58a74;--chip:#21404d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1c23;--card:#172a34;--ink:#e6f0f5;--soft:#9ab4c1;--pri:#3a9bbd;--dark:#9fd3e6;--line:#25404d;--ok:#4fc58f;--bad:#e58a74;--chip:#21404d;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Segoe UI,Tahoma,sans-serif}
+.wrap{max-width:760px;margin:auto;padding:16px 14px 70px}
+h1{margin:0;color:var(--dark);font-size:1.25rem}h2{margin:0 0 10px;color:var(--dark);font-size:1rem}
+.demo{background:var(--chip);color:var(--dark);border-radius:12px;padding:10px 12px;font-size:.9rem;margin:10px 0 14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.card,.order,.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.card{display:grid;gap:3px}.card small{color:var(--soft)}.card b{color:var(--dark);font-size:1.05rem}.card span{color:var(--ok);font-weight:700;font-size:.85rem}
+.chips{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px;padding-bottom:4px}
+button{font:inherit;font-weight:700;border:1px solid var(--line);border-radius:11px;padding:9px 14px;background:var(--card);color:var(--dark);cursor:pointer}
+.chip{white-space:nowrap}.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.order{margin-bottom:10px;display:grid;gap:5px;cursor:pointer}
+.order small,.box small{color:var(--soft)}
+.top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.badge{border-radius:8px;padding:2px 9px;font-size:.8rem;font-weight:700;white-space:nowrap}
+.s-new{background:#fff4d6;color:#8a6200}.s-pending{background:#fde8d4;color:#a4500d}.s-preparing{background:#e3eefc;color:#1c4f9c}.s-ready{background:#e1f6ec;color:#16865b}.s-delivered{background:#e9e9e9;color:#444}.s-cancelled{background:#fdecea;color:#b3543f}
+.s-none{background:var(--chip);color:var(--dark)}.pay{font-size:.8rem;color:var(--soft)}
+.box{margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{padding:8px 4px;border-bottom:1px solid var(--line);text-align:start}th{color:var(--soft);font-weight:600}
+.sum{display:flex;justify-content:space-between;padding:6px 0}.sum.big{font-weight:800;color:var(--dark);font-size:1.05rem}
+.grid{display:flex;gap:6px;flex-wrap:wrap}
+.pay-sel,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--ink);font:inherit}
+textarea{min-height:70px}
+a{color:var(--pri);font-weight:700}
+.back{margin-bottom:12px}
+.hide{display:none}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+:root{--bg:#eef3f6;--card:#fff;--ink:#0f2530;--soft:#6b8190;--pri:#0e7c86;--dark:#0b3f4a;--line:#e4edf1;--ok:#14935f;--bad:#c4513b;--warn:#9a6b00;--chip:#e3f1f3;--sh:0 8px 24px rgba(15,37,48,.07)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b161c;--card:#13232b;--ink:#e8f1f5;--soft:#8fa9b6;--pri:#2fb5c1;--dark:#a6e0e8;--line:#213842;--ok:#4fd19a;--bad:#ee937d;--warn:#f0c05a;--chip:#1b3640;--sh:0 8px 24px rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--bg:#0b161c;--card:#13232b;--ink:#e8f1f5;--soft:#8fa9b6;--pri:#2fb5c1;--dark:#a6e0e8;--line:#213842;--ok:#4fd19a;--bad:#ee937d;--warn:#f0c05a;--chip:#1b3640;--sh:0 8px 24px rgba(0,0,0,.35)}
+body{font-family:'Readex Pro','Segoe UI',Tahoma,sans-serif;background:linear-gradient(180deg,rgba(14,124,134,.16),transparent 300px) no-repeat,var(--bg);line-height:1.6}
+.hero{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.logo{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:1.4rem;background:linear-gradient(135deg,#0e7c86,#0b4f5a);box-shadow:var(--sh)}
+.hero h1{font-size:1.35rem;font-weight:700}.hero p{margin:0;color:var(--soft);font-size:.85rem}
+.demo{background:transparent;border:1px dashed var(--pri);font-size:.82rem;border-radius:14px}
+.card,.order,.box{border:0;border-radius:20px;box-shadow:var(--sh)}
+.card{padding:16px}.card b{font-size:1.2rem}
+.card:nth-child(3){background:linear-gradient(135deg,#0e7c86,#0b4f5a)}
+.card:nth-child(3) small,.card:nth-child(3) b,.card:nth-child(3) span{color:#fff}.card:nth-child(3) small{opacity:.8}
+button{border-radius:999px;font-family:inherit;font-weight:600}
+.chip{background:var(--card);border:0;box-shadow:var(--sh);font-size:.85rem;padding:9px 16px}
+.on{background:linear-gradient(135deg,#0e7c86,#0b5560);color:#fff;border-color:transparent}
+.back{background:var(--card);box-shadow:var(--sh);border:0}
+.order{padding:16px;border-inline-start:5px solid var(--line);transition:transform .15s}
+.order:active{transform:scale(.985)}
+.order b{font-size:1.05rem;color:var(--dark)}
+.s-b-ready{border-inline-start-color:var(--ok)}.s-b-cancelled{border-inline-start-color:var(--bad);opacity:.8}.s-b-none{border-inline-start-color:#e0a82e}
+.badge{padding:4px 11px;border-radius:999px;font-size:.78rem}
+.badge::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;margin-inline-end:6px}
+.s-ready{background:rgba(20,147,95,.15);color:var(--ok)}.s-cancelled{background:rgba(196,81,59,.15);color:var(--bad)}.s-none{background:rgba(224,168,46,.2);color:var(--warn)}
+.sum.big{border-top:1px dashed var(--line);margin-top:6px;padding-top:12px;font-size:1.1rem}
+.pay-sel,textarea{border-radius:14px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<main class="wrap">
+
+<section id="login" class="box" style="max-width:420px;margin:40px auto">
+<h2>تسجيل الدخول</h2>
+<form id="lf" style="display:grid;gap:10px">
+<input id="em" type="email" autocomplete="username" placeholder="البريد الإلكتروني" required class="pay-sel">
+<input id="pw" type="password" autocomplete="current-password" placeholder="كلمة المرور" required class="pay-sel">
+<button class="on" type="submit">دخول</button>
+<small id="lerr" style="color:var(--bad)"></small>
+</form></section>
+<div id="listView" class="hide">
+<header class="hero"><div class="logo">🦷</div><div><h1>طلبات Dent Box</h1><p>إدارة طلبات الموقع</p></div><button id="out" class="hide" style="margin-inline-start:auto">خروج</button></header>
+<div class="cards" id="sum"></div>
+<div class="chips" id="chips"></div>
+<div id="list"></div>
+</div>
+
+<div id="detailView" class="hide"></div>
+
+</main>
+<script>
+const ST=new Proxy({ready:'تم التجهيز',cancelled:'تم الغاء الطلب'},{get:(t,k)=>k in t?t[k]:'بدون حالة'});
+const PAY={unpaid:'غير مدفوع',deposit:'عربون',paid:'مدفوع'};
+const fmt=n=>Number(n||0).toLocaleString('ar-IQ')+' د.ع';
+const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+let orders=[];
+const db=window.supabase.createClient('https://ncurbamdczoiafvcnhzd.supabase.co','sb_publishable_I_8sCiOUrVQzSi_6inzPYQ_nzWfZksF');
+const map=r=>({id:r.id,name:r.customer_name||'—',phone:r.customer_phone||'',addr:r.address||'—',status:r.status||'none',pay:r.payment_status||'unpaid',paid:Number(r.paid_amount)||0,at:r.created_at,note:r.admin_note||'',cnote:r.customer_note||'',delivery:Number(r.delivery)||0,items:(r.items||[]).map(i=>({n:i.name+(i.variant?' ('+i.variant+')':''),q:Number(i.qty)||1,p:Number(i.price)||0}))});
+async function load(){
+  if(!document.querySelector('#detailView').classList.contains('hide'))return;
+  const {data,error}=await db.from('orders').select('*').order('created_at',{ascending:false});
+  if(error){alert('تعذر قراءة الطلبات: '+error.message);return;}
+  orders=(data||[]).map(map);summary();renderList();
+}
+async function save(o,u){const {error}=await db.from('orders').update(u).eq('id',o.id);if(error)alert('فشل الحفظ: '+error.message);}
+let filter='';
+const sub=o=>o.items.reduce((s,i)=>s+i.q*i.p,0),tot=o=>sub(o)+o.delivery;
+const rem=o=>Math.max(0,tot(o)-o.paid);
+const $=s=>document.querySelector(s);
+
+function summary(){
+  const ok=orders.filter(o=>o.status!=='cancelled');
+  const day=ok.filter(o=>new Date(o.at).toDateString()===new Date().toDateString());
+  const c=(t,a,b)=>`<div class="card"><small>${t}</small><b>${a}</b><span>${b}</span></div>`;
+  const s=(a,f)=>a.reduce((x,o)=>x+f(o),0);
+  $('#sum').innerHTML=c('طلبات جديدة',orders.filter(o=>o.status==='none').length,'تحتاج مراجعة')
+   +c('مجموع اليوم',fmt(s(day,tot)),day.length+' طلب')
+   +c('المجموع الكلي',fmt(s(ok,tot)),ok.length+' طلب')
+   +c('متبقي على الزبائن',fmt(s(ok,rem)),ok.filter(o=>rem(o)>0).length+' طلب');
+}
+function renderList(){
+  const cnt=k=>orders.filter(o=>!k||o.status===k).length;
+  $('#chips').innerHTML=[['','الكل'],['none','بدون حالة'],...Object.entries(ST)].map(([k,l])=>`<button class="chip${filter===k?' on':''}" data-f="${k}">${l} (${cnt(k)})</button>`).join('');
+  const L=orders.filter(o=>!filter||o.status===filter);
+  $('#list').innerHTML=L.length?L.map(o=>`<div class="order s-b-${o.status}" data-id="${o.id}">
+<div class="top"><strong>${esc(o.name)}</strong><span class="badge s-${o.status}">${ST[o.status]}</span></div>
+<small>${o.items.map(i=>esc(i.n)+' ×'+i.q).join('، ')}</small>
+<div class="top"><b>${fmt(tot(o))}</b><span class="pay">${PAY[o.pay]}${rem(o)&&o.status!=='cancelled'?' · متبقي '+fmt(rem(o)):''}</span></div>
+<small>${new Date(o.at).toLocaleString('ar-IQ',{dateStyle:'medium',timeStyle:'short'})}</small></div>`).join(''):'<div class="box">'+(orders.length?'لا توجد طلبات بهذه الحالة.':'لا توجد طلبات بعد. الطلبات الجديدة من الموقع ستظهر هنا.')+'</div>';
+}
+function detail(id){
+  const o=orders.find(x=>x.id===id);
+  const ph=o.phone.replace(/\D/g,'').replace(/^0/,'964');
+  $('#detailView').innerHTML=`<button class="back" id="back">→ رجوع للطلبات</button>
+<div class="box"><div class="top"><h2 style="margin:0">${esc(o.name)}</h2><span class="badge s-${o.status}">${ST[o.status]}</span></div>
+<p style="margin:8px 0 0"><small>الهاتف:</small> ${o.phone?`<span dir="ltr">${esc(o.phone)}</span> · <a href="https://wa.me/${ph}" target="_blank">واتساب</a>`:'—'}</p>
+<p style="margin:4px 0 0"><small>العنوان:</small> ${esc(o.addr)}</p>
+<p style="margin:4px 0 0"><small>ملاحظات الزبون:</small> ${esc(o.cnote||'لا توجد')}</p>
+<p style="margin:4px 0 0"><small>التاريخ:</small> ${new Date(o.at).toLocaleString('ar-IQ',{dateStyle:'medium',timeStyle:'short'})}</p></div>
+<div class="box"><h2>المنتجات</h2><div style="overflow-x:auto"><table><tr><th>المنتج</th><th>الكمية</th><th>السعر</th><th>المجموع</th></tr>
+${o.items.map(i=>`<tr><td>${esc(i.n)}</td><td>${i.q}</td><td>${fmt(i.p)}</td><td>${fmt(i.q*i.p)}</td></tr>`).join('')}</table></div>
+<div class="sum"><span>مجموع المنتجات</span><span>${fmt(sub(o))}</span></div><div class="sum"><span>التوصيل</span><span>${fmt(o.delivery)}</span></div><div class="sum big"><span>المجموع</span><span>${fmt(tot(o))}</span></div>
+
+</div>
+<div class="box"><h2>حالة الطلب</h2><div class="grid" id="stBtns">${Object.entries(ST).map(([k,l])=>`<button class="${o.status===k?'on':''}" data-s="${k}">${l}</button>`).join('')}</div></div>
+<div class="box"><h2>الدفع</h2><div class="grid" id="payBtns">${Object.entries(PAY).map(([k,l])=>`<button class="${o.pay===k?'on':''}" data-p="${k}">${l}</button>`).join('')}</div>
+<div class="sum"><span>المدفوع</span><span>${fmt(o.paid)}</span></div><div class="sum"><span>المتبقي</span><span>${fmt(rem(o))}</span></div></div>
+<div class="box"><h2>ملاحظات</h2><textarea id="note" placeholder="اكتب ملاحظة عن الطلب...">${esc(o.note)}</textarea></div>`;
+  $('#listView').classList.add('hide');$('#detailView').classList.remove('hide');window.scrollTo(0,0);
+  $('#back').onclick=()=>{$('#detailView').classList.add('hide');$('#listView').classList.remove('hide');summary();renderList();};
+  $('#stBtns').onclick=e=>{const b=e.target.closest('[data-s]');if(b){o.status=o.status===b.dataset.s?'none':b.dataset.s;save(o,{status:o.status});detail(id);}};
+  $('#payBtns').onclick=e=>{const b=e.target.closest('[data-p]');if(!b)return;o.pay=b.dataset.p;o.paid=o.pay==='paid'?tot(o):o.pay==='unpaid'?0:(Number(prompt('المبلغ المدفوع؟',o.paid))||0);save(o,{payment_status:o.pay,paid_amount:o.paid});detail(id);};
+  let t;$('#note').oninput=e=>{o.note=e.target.value;clearTimeout(t);t=setTimeout(()=>save(o,{admin_note:o.note}),600);};
+}
+$('#chips').onclick=e=>{const b=e.target.closest('[data-f]');if(b){filter=b.dataset.f;renderList();}};
+$('#list').onclick=e=>{const c=e.target.closest('[data-id]');if(c)detail(c.dataset.id);};
+$('#lf').onsubmit=async e=>{e.preventDefault();const {error}=await db.auth.signInWithPassword({email:$('#em').value.trim(),password:$('#pw').value});$('#lerr').textContent=error?'فشل الدخول: '+error.message:'';};
+$('#out').onclick=()=>db.auth.signOut();
+db.auth.onAuthStateChange((_e,ses)=>{
+  $('#login').classList.toggle('hide',!!ses);$('#out').classList.toggle('hide',!ses);
+  $('#detailView').classList.add('hide');$('#listView').classList.toggle('hide',!ses);
+  if(ses)load();else orders=[];
+});
+setInterval(()=>{if(!$('#listView').classList.contains('hide'))load();},30000);
+</script>
+</body>
+</html>
