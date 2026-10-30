@@ -359,7 +359,8 @@ h1{margin:15px 0 13px;color:var(--primary-dark);font-size:clamp(2.25rem,5vw,4.1r
 /* ===== WhatsApp button: smaller, hidden while cart is open ===== */
 .wa-float{width:50px;height:50px;left:14px;bottom:86px}
 .wa-float svg{width:28px;height:28px}
-body:has(.drawer.open) .wa-float{display:none}
+  body:has(.drawer.open) .wa-float,body:has(.variant-modal.open) .wa-float,body:has(.search-modal.open) .wa-float,body:has(.mobile-menu-popup) .wa-float{display:none}
+
 @media(min-width:701px){.wa-float{bottom:22px}}
 
 /* ===== Skeleton loading ===== */
