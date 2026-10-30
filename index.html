@@ -1768,8 +1768,14 @@ ${items}
     '_blank',
     'noopener'
   );
-
   toast('تم تجهيز الطلب في واتساب');
+
+  cart = {};
+  saveCart();
+  $('notes').value = '';
+  $('checkoutForm').classList.remove('show');
+  closeCart();
+
 
 };
 
